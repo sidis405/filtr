@@ -144,8 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
-        'GrahamCampbell\Markdown\MarkdownServiceProvider'
+        
     ],
 
     /*
@@ -195,7 +194,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown'
 
     ],
 
