@@ -16,9 +16,28 @@ class SemanticRepo
         $this->alchemy = $alchemy;
     }
 
-    public function getKeywords($url)
+    public function extractSemanticData($resource,  $entities = [], $type = 'html')
     {
-        $response = $this->alchemy->entities('url', $url, null);
+        $data = [];
+
+        foreach ($entities as $entity) {
+            $fname = 'get' . ucfirst($entity);
+            $data[$entity] = $this->$fname($type, $resource);
+        }
+
+        return $data;
+    }
+
+    public function getKeywords($type, $url)
+    {
+        $response = $this->alchemy->keywords($type, $url, null);
+
+        return $response['keywords'];
+    }
+
+    public function getEntities($type, $url)
+    {
+        $response = $this->alchemy->entities($type, $url, null);
 
         return $response['entities'];
     }
