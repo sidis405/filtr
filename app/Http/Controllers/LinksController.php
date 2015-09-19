@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use Filtr\Repositories\FilterRepo;
-use Filtr\Repositories\SemanticRepo;
+use App\Http\Requests\Links\CreateLinkRequest;
+use Filtr\Repositories\LinksRepo;
 use Illuminate\Http\Request;
 
 class LinksController extends Controller
@@ -13,30 +13,36 @@ class LinksController extends Controller
 
     public function __construct()
     {
-        $this->middleware('cachebefore');
-        $this->middleware('cacheafter');
+        // $this->middleware('cachebefore');
+        // $this->middleware('cacheafter');
     }
 
-    public function index(FilterRepo $filter, SemanticRepo $semantics)
+    public function index()
     {
-        $data = $this->getFiltrData($filter, $semantics);
-
-        return $data;
-
-        return view('links.index', compact('data'));
-
+        return view('links.index');
     }
 
-    public function getFiltrData(FilterRepo $filter, SemanticRepo $semantics)
+    public function store(CreateLinkRequest $request, LinksRepo $links)
     {
-        $url = 'http://www.wired.co.uk/magazine/archive/2015/03/start/scaling-dublin-summit';
 
-        $content = $filter->filter($url);
+        $link = $links->getBySlug(sluggifyUrl($request->input('url')));
 
-        $meta = $semantics->extractSemanticData($content, ['keywords', 'entities']);
+        if ( $link ) return redirect()->to($link->slug);
+ 
 
-        $data = array_add($meta, 'content' , $content);
+        $new_link = $this->dispatchFrom('App\Commands\Links\CreateLinkCommand', $request);
 
-        return $data;
+        return redirect()->to($new_link->slug);
+
     }
+
+    public function show($slug, LinksRepo $links)
+    {
+        $link = $links->getBySlug($slug);
+
+        if ( ! $link ) abort(404);
+
+        return view('links.show', compact('link'));
+    }
+
 }

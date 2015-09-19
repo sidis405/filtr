@@ -4,7 +4,7 @@
 
 <div class="row">
 
-Posts a link
+{!! $link->content !!}
 
 </div>
 

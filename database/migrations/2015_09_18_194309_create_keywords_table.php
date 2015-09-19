@@ -16,7 +16,6 @@ class CreateKeywordsTable extends Migration
             $table->increments('id');
             $table->string('text');
             $table->string('slug');
-            $table->double('relevance', 16,14);
             $table->timestamps();
         });
     }

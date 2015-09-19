@@ -14,9 +14,10 @@ class CreateEntityLinkTable extends Migration
     {
         Schema::create('entity_link', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link_id');
-            $table->string('entity_id');
+            $table->integer('link_id');
+            $table->integer('entity_id');
             $table->integer('count');
+            $table->double('relevance', 16,14);
             $table->timestamps();
         });
     }

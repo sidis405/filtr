@@ -18,12 +18,25 @@
     margin-right: 2%;
     margin-bottom: 1%;
     }
+    
+    .navbar-form input {
+        width:90%!important;
+    }
+
+    .container {
+        margin-top: 80px!important;
+    }
 
     </style>
 </head>
 <body>
 
+@include('layouts.search')
+
+
 <div class="container">
+
+    @include('layouts.errors')
 
     @yield('content')
 

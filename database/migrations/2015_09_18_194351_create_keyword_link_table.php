@@ -14,9 +14,9 @@ class CreateKeywordLinkTable extends Migration
     {
         Schema::create('keyword_link', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('link_id');
-            $table->string('keyword_id');
-            $table->integer('count');
+            $table->integer('link_id');
+            $table->integer('keyword_id');
+            $table->double('relevance', 16,14);
             $table->timestamps();
         });
     }

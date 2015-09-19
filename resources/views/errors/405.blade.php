@@ -4,7 +4,7 @@
 
 <div class="row">
 
-Posts a link
+The Link you have provided is incorrect or inaccessible
 
 </div>
 

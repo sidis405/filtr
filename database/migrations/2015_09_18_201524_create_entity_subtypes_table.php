@@ -14,8 +14,8 @@ class CreateEntitySubtypesTable extends Migration
     {
         Schema::create('entity_subtype', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('entity_id');
-            $table->string('subtype_id');
+            $table->integer('entity_id');
+            $table->integer('subtype_id');
             $table->timestamps();
         });
     }

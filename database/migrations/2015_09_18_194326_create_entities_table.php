@@ -17,9 +17,9 @@ class CreateEntitiesTable extends Migration
             $table->string('type');
             $table->string('text');
             $table->string('slug');
-            $table->double('relevance', 16,14);
-            $table->string('name');
-            $table->string('website');
+            $table->string('name')->nullable();
+            $table->string('website')->nullable();
+            $table->string('geo')->nullable();
             $table->timestamps();
         });
     }

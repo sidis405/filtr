@@ -14,8 +14,8 @@ class CreateEntityKeywordTable extends Migration
     {
         Schema::create('entity_keyword', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('entity_id');
-            $table->string('keyword_id');
+            $table->integer('entity_id');
+            $table->integer('keyword_id');
             $table->timestamps();
         });
     }
