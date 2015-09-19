@@ -1,0 +1,55 @@
+body {
+    font-size: 16px !important;
+}
+img {
+    width: 50%;
+    height: auto;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 1%;
+}
+.navbar-form input {
+    width: 90% !important;
+}
+.container {
+    margin-top: 80px !important;
+}
+
+.article {
+    width:100%;
+    padding: 10px;
+    height: 44px;
+}
+
+.article a,
+.article a:hover {
+    text-decoration: none;
+}
+
+.article:hover {
+    background-color: #ddd;
+}
+
+.title {
+    float: left;
+}
+
+.source {
+    float: right;
+}
+
+.source a{
+    color: #000;
+    font-size: 12px;
+    vertical-align: auto;
+}
+
+.related-links li {
+    height: 50px;
+}
+
+.related-matches {
+    color: #000;
+    font-size: 11px;
+    vertical-align: auto;
+}

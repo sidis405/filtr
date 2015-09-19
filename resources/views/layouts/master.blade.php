@@ -4,30 +4,7 @@
     <title>Filtr</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
-    <style type="text/css">
-
-    body {
-        font-size: 16px!important;
-    }
-
-    img {
-    width: 50%;
-    height: auto;
-    float: left;
-    margin-right: 2%;
-    margin-bottom: 1%;
-    }
-    
-    .navbar-form input {
-        width:90%!important;
-    }
-
-    .container {
-        margin-top: 80px!important;
-    }
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
 

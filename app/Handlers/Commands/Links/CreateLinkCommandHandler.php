@@ -49,14 +49,13 @@ class CreateLinkCommandHandler
 
         // dd($link_data);
 
-        $parsed_url = parse_url($command->url);
-
         $link_object = Links::make(
                 $command->url,
-                $link_data['content'],
+                $link_data['content']['title'],
+                $link_data['content']['content'],
                 Auth::user()->id,
                 sluggifyUrl($command->url),
-                $parsed_url['host'],
+                getDomainFromUrl($command->url),
                 md5(sluggifyUrl($command->url))
             );
 
@@ -104,6 +103,8 @@ class CreateLinkCommandHandler
                 }elseif(!isset($entity['disambiguated']['website']) && isset($entity['disambiguated']['geo'])){
 
                     $entity_object = Entities::make($entity['type'], $entity['text'], str_slug($entity['text']), $entity['disambiguated']['name'], $entity['disambiguated']['geo']);
+                }else {
+                    $entity_object = Entities::make($entity['type'], $entity['text'], str_slug($entity['text']));
                 }
 
 

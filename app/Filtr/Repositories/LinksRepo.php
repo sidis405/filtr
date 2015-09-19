@@ -27,16 +27,21 @@ class LinksRepo
         return $link;
     }
 
+    public function getLatest($howMany = 15)
+    {
+        return Links::with('keywords', 'entities.subtypes')->latest()->simplePaginate($howMany);
+    }
+
     public function getBySlug($slug)
     {
-        return Links::with('keywords', 'entities')->whereSlug($slug)->first();
+        return Links::with('keywords', 'entities.subtypes')->whereSlug($slug)->first();
     }
 
     public function getLinksData($url, $entities = [])
     {
         $content = $this->readability->filter($url);
 
-        $meta = $this->semantics->extractSemanticData($content, $entities);
+        $meta = $this->semantics->extractSemanticData($content['content'], $entities);
 
         $data = array_add($meta, 'content' , $content);
 

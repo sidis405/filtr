@@ -3,7 +3,7 @@
 namespace Filtr\Repositories;
 
 use Filtr\Utils\Readability\Readability;
-
+use ErrorException;
 /**
 * Filter Class
 */
@@ -24,13 +24,16 @@ class ReadabilityRepo
         $out = '';
 
         if ($result) {
-            $out .= "<h2>".$readability->getTitle()->textContent . "</h2>". "\n\n";
-            $content = $readability->getContent()->innerHTML;
-            $out .= $content;
+            return ['title' => $readability->getTitle()->textContent, 'content' => $readability->getContent()->innerHTML];
+            // $out .= "<h2>".$readability->getTitle()->textContent . "</h2>". "\n\n";
+            // $content = $readability->getContent()->innerHTML;
+            // $out .= $content;
         } else {
-            $out .= 'Looks like we couldn\'t find the content. :(';
+
+            throw new ErrorException;
+            // return ['title' => 'Count not fetch title', 'content' => 'Could not fetch content'];
         }
-        return $out;
+
     }
 
 }

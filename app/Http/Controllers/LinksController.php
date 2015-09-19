@@ -17,9 +17,11 @@ class LinksController extends Controller
         // $this->middleware('cacheafter');
     }
 
-    public function index()
+    public function index(LinksRepo $links_repo)
     {
-        return view('links.index');
+        $links = $links_repo->getLatest(15);
+
+        return view('links.index', compact('links'));
     }
 
     public function store(CreateLinkRequest $request, LinksRepo $links)
@@ -42,7 +44,16 @@ class LinksController extends Controller
 
         if ( ! $link ) abort(404);
 
-        return view('links.show', compact('link'));
+        $relatedByKeywords = $link->relatedByKeywords();
+        $relatedByEntities = $link->relatedByEntities();
+
+        // return $relatedByKeywords;
+
+        $related = mergeRelated($relatedByKeywords, $relatedByEntities);
+
+        // return $related;
+
+        return view('links.show', compact('link', 'related'));
     }
 
 }
