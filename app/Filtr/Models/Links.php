@@ -3,11 +3,51 @@
 namespace Filtr\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\SearchIndex\Searchable;
 
-class Links extends Model
+class Links extends Model implements Searchable
 {
 
     protected $fillable = ['url', 'title', 'content', 'user_id', 'slug', 'domain', 'hash'];
+
+    /**
+     * Returns an array with properties which must be indexed
+     *
+     * @return array
+     */
+    public function getSearchableBody()
+    {
+        $searchableProperties = [
+            'title' => $this->title,
+            'content' => $this->content,
+            'slug' => $this->slug,
+            'entities' => $this->entities,
+            'keyword' => $this->keywords
+        ];
+
+        return $searchableProperties;
+
+    }
+
+    /**
+     * Return the type of the searchable subject
+     *
+     * @return string
+     */
+    public function getSearchableType()
+    {
+        return 'links';
+    }
+
+    /**
+     * Return the id of the searchable subject
+     *
+     * @return string
+     */
+    public function getSearchableId()
+    {
+        return $this->id;
+    }
 
     public function user()
     {

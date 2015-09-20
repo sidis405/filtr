@@ -8,6 +8,15 @@ img {
     margin-right: 2%;
     margin-bottom: 1%;
 }
+
+.main-bar {
+
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0px -1px 5px #888888;
+
+}
+
 .navbar-form input {
     width: 90% !important;
 }
@@ -58,4 +67,36 @@ img {
     color: #000;
     font-size: 11px;
     vertical-align: auto;
+}
+
+.global-search {
+    text-align:center;
+    padding:10px;
+  }
+   .global-search * {
+    display:inline-block;
+    margin-bottom:0;
+  }
+
+   .global-search .form-control {
+      width:120px;
+  }
+
+   .global-search a {
+    display:block;
+    padding-top:10px;
+  }
+
+
+
+@media (min-width:400px){
+   .global-search {
+    padding: 20px 0;
+    text-align:center;
+    }
+
+   .global-search .form-control {
+    width:300px;
+   }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\Links\CreateLinkRequest;
+use Filtr\Models\Links;
 use Filtr\Repositories\LinksRepo;
 use Illuminate\Http\Request;
 
@@ -47,13 +48,8 @@ class LinksController extends Controller
         $relatedByKeywords = $link->relatedByKeywords();
         $relatedByEntities = $link->relatedByEntities();
 
-        // return $relatedByKeywords;
-
         $related = mergeRelated($relatedByKeywords, $relatedByEntities);
-
-        // return $related;
 
         return view('links.show', compact('link', 'related'));
     }
-
 }

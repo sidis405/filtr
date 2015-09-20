@@ -13,4 +13,7 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
 
+Route::get('build', 'SearchController@makeElasticIndex');
+Route::get('search', 'SearchController@search');
+
 Route::get('{slug}', 'LinksController@show');

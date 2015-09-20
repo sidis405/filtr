@@ -147,6 +147,7 @@ return [
         App\Providers\BusServiceProvider::class,
 
         Sid\SimpleCache\SimpleCacheServiceProvider::class,
+        Spatie\SearchIndex\SearchIndexServiceProvider::class,
         
     ],
 
@@ -197,7 +198,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
-
+        'SearchIndex' => Spatie\SearchIndex\SearchIndexFacade::class,
     ],
 
 ];
