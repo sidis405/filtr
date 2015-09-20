@@ -104,3 +104,12 @@ img {
 em {
   background-color: yellow;
 }
+
+.logo {
+    color: #000;
+    font-size: 20px;
+}
+
+.logo span{
+  color:red!important;
+}

@@ -5,7 +5,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Linkr</a>
+        <a class="navbar-brand logo" href="/"><span class="bracket">[</span>F<span class="bracket">]</span>ILTR</a>
       </div>
         
       <div class="collapse navbar-collapse">
