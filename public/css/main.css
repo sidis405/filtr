@@ -44,6 +44,12 @@ img {
     vertical-align: auto;
 }
 
+.related-links {
+    width:100%;
+    display: block;
+    float: left;
+}
+
 .related-links li {
     height: 50px;
 }
