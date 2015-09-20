@@ -2,11 +2,48 @@
 
 namespace Filtr\Models;
 
+use Spatie\SearchIndex\Searchable;
+
 use Illuminate\Database\Eloquent\Model;
 
-class Keywords extends Model
+class Keywords extends Model implements Searchable
 {
     protected $fillable = ['text', 'slug'];
+
+    /**
+     * Returns an array with properties which must be indexed
+     *
+     * @return array
+     */
+    public function getSearchableBody()
+    {
+        $searchableProperties = [
+            'text' => $this->text
+        ];
+
+        return $searchableProperties;
+
+    }
+
+    /**
+     * Return the type of the searchable subject
+     *
+     * @return string
+     */
+    public function getSearchableType()
+    {
+        return 'keywords';
+    }
+
+    /**
+     * Return the id of the searchable subject
+     *
+     * @return string
+     */
+    public function getSearchableId()
+    {
+        return $this->id;
+    }
 
     public function entities()
     {

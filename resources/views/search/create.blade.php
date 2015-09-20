@@ -5,7 +5,7 @@
 
 <div class="row">
 
- <form class="form-inline global-search" role="form">
+ <form class="form-inline global-search" role="form" action="/search">
                 <div class="form-group">
                     <label class="sr-only" for="">Enter search terms</label>
                     <input type="search" class="form-control" id="q" name="q" placeholder="Enter search terms">

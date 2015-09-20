@@ -22,7 +22,8 @@ class Links extends Model implements Searchable
             'content' => $this->content,
             'slug' => $this->slug,
             'entities' => $this->entities,
-            'keyword' => $this->keywords
+            'keyword' => $this->keywords,
+            'domain' => $this->domain
         ];
 
         return $searchableProperties;

@@ -5,57 +5,62 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Filtr\Models\Links;
+use Filtr\Repositories\SearchRepo;
 use Illuminate\Http\Request;
-use SearchIndex;
 
 class SearchController extends Controller
 {
 
-    public function makeElasticIndex()
+    public function makeElasticIndex(SearchRepo $search)
     {
-        $links = Links::get();
-
-        foreach($links as $link)
-        {
-           SearchIndex::upsertToIndex($link);
-        }
-
-        return 'indexed all links';
+        return $search->buildIndex();
     }
 
-    public function search(Request $request)
+    public function searchLinks(Request $request, SearchRepo $search)
     {
-        if(strlen($request->input('q')) > 3)
+        if(strlen($request->input('q')) > 2)
         {
-            $query =
-                [
-                    'body' =>
-                        [
-                            'from' => 0,
-                            'size' => 500,
-                            'query' =>
-                                [
-                                    'fuzzy_like_this' =>
-                                        [
-                                            '_all' =>
-                                                [
-                                                    'like_text' => $request->input('q'),
-                                                    'fuzziness' => 0.5,
-                                                ],
-                                        ],
-                                ],
-                        ]
-                ];
-                $results = SearchIndex::getResults($query);
+            $query = $request->input('q');
 
-                return $results['hits']['hits'];
+            $results = $search->search($query,  'title', 'links');
+
+            $time = $results['took'];
+
+            $count = $results['hits']['total'];
+
+            $results = $results['hits']['hits'];
+
+            // return $results;
+
+            return view('search.show', compact('query', 'results', 'time', 'count'));
 
         } else {
 
             return view('search.create');
         }
-            
     }
 
+    public function searchTitlesKeywords(Request $request, SearchRepo $search)
+    {
+        if(strlen($request->input('q')) > 2)
+        {
+            $titles_results = $search->search($request->input('q'), 'title', 'titles');
+            $keywords_results = $search->search($request->input('q'), 'text', 'keywords');
+
+            $titles = $titles_results['hits']['hits'];
+            $keywords = $keywords_results['hits']['hits'];
+
+            return array_merge($titles, $keywords);
+
+        } else {
+
+            return view('search.create');
+        }
+    }
+
+    public function destroy(SearchRepo $search)
+    {
+        return $search->clearIndex();
+    }
 
 }
