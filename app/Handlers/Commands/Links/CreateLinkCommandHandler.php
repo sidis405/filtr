@@ -15,6 +15,7 @@ use Filtr\Repositories\LinksRepo;
 use Filtr\Repositories\SubtypesRepo;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
+use SearchIndex;
 
 class CreateLinkCommandHandler
 {
@@ -61,6 +62,8 @@ class CreateLinkCommandHandler
 
         $link = $this->links->save($link_object);
 
+        SearchIndex::upsertToIndex($link);
+
         $this->attachKeywords($link, $link_data['keywords']);
         
         $this->attachEntities($link, $link_data['entities']);
@@ -77,6 +80,8 @@ class CreateLinkCommandHandler
             $keyword_object = Keywords::make($keyword['text'], str_slug($keyword['text']));
 
             $new_keyword = $this->keywords->save($keyword_object);
+
+            SearchIndex::upsertToIndex($new_keyword);
 
             $link->keywords()->attach($new_keyword->id, ['relevance' => $keyword['relevance']]);
 
