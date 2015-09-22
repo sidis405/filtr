@@ -16,6 +16,8 @@ class LinksController extends Controller
     {
         // $this->middleware('cachebefore');
         // $this->middleware('cacheafter');
+        $this->middleware('auth', ['only' => ['store']]);
+        parent::__construct();
     }
 
     public function index(LinksRepo $links_repo)

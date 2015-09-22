@@ -9,6 +9,25 @@ img {
     margin-bottom: 1%;
 }
 
+.navbar .btn-group{
+  margin-top: 8px;
+}
+
+ .navbar-user {
+    margin: 8px;
+ }
+
+ #main-form {
+  width:70%;
+ }
+
+ #main-form .input-group {
+  width: 100%;
+  -webkit-transition: all .1s ease;
+   -moz-transition: all .1s ease;
+   transition: all .1s ease;
+ }
+
 .main-bar {
 
     background-color: #fff;
@@ -18,7 +37,7 @@ img {
 }
 
 .navbar-form input {
-    width: 90% !important;
+    /*width: 90% !important;*/
 }
 .container {
     margin-top: 80px !important;

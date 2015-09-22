@@ -5,17 +5,6 @@
 
 <div class="row">
 
- <form class="form-inline main-search" role="form">
-                <div class="form-group" style="    width: 95%; margin-left: 1%;">
-                    <label class="sr-only" for="">Enter search terms</label>
-                    <input style="width:100%" type="search" class="form-control" id="q" name="q" value="{{$query}}" placeholder="Enter search terms" autocomplete="off">
-                </div>
-                <button type="submit" id="s" class="btn btn-default"><span class="glyphicon glyphicon-search"></span>
-
-            </form>
-
-</div>
-
 <div class="full-search-results">
     <div class="row">
     @if($count >0)
