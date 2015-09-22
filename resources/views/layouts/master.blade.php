@@ -20,8 +20,12 @@
 
 </div>
 
-<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/jquery-2.1.4.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<!-- <script src="/js/typeahead.jquery.js"></script> -->
+<!-- <script src="/js/bloodhound.min.js"></script> -->
+<!-- <script src="/js/bootstrap3-typeahead.min.js"></script> -->
+<script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

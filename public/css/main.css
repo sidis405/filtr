@@ -11,6 +11,7 @@ img {
 
 .navbar .btn-group{
   margin-top: 8px;
+  margin-left: 3%
 }
 
  .navbar-user {
@@ -18,7 +19,7 @@ img {
  }
 
  #main-form {
-  width:70%;
+  width:67%;
  }
 
  #main-form .input-group {
@@ -126,9 +127,14 @@ em {
 
 .logo {
     color: #000;
-    font-size: 20px;
+    font-size: 31px;
+    margin-left: 14%;
 }
 
 .logo span{
   color:red!important;
+}
+
+.typeahead.dropdown-menu {
+  width: 53%;
 }

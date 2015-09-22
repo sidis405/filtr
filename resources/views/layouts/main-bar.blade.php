@@ -12,16 +12,16 @@
 
       <div class="btn-group navbar-left" role="group" >
 
-          <button class="btn btn-default" id="search-button">Search</button>
-          <button class="btn btn-default" id="add-button">Add</button>
+          <button type="button" class="btn btn-default active" id="search-button">Search</button>
+          <button type="button" class="btn btn-default" id="add-button">Add</button>
     </div>
 
 
 
-          <form class="navbar-form navbar-left" id="main-form" method="GET" action="/search">
+          <form class="navbar-form navbar-left search-form" id="main-form" method="GET" action="/search">
 
             <div class="input-group">
-              <input type="search" name="q" id="main-form-input" class="form-control main-form-input" value="{{\Request::input('q')}}" placeholder="Start typing to search" autocomplete="off"> 
+              <input type="search" name="q"  id="main-form-input" class="form-control main-form-input" value="{{\Request::input('q')}}" placeholder="Start typing to search"  autocomplete="off"> 
               <span class="input-group-btn">
                 <button class="btn btn-default"  id="main-form-button" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </span>

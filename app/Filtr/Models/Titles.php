@@ -19,6 +19,7 @@ class Titles extends Model implements Searchable
     {
         $searchableProperties = [
             'title' => $this->title,
+            'slug' => $this->slug,
             'domain' => $this->domain
         ];
 
