@@ -60,7 +60,9 @@ class SearchController extends Controller
 
     public function destroy(SearchRepo $search)
     {
-        return $search->clearIndex();
+        $search->clearIndex();
+
+        return redirect()->to('/');
     }
 
 }

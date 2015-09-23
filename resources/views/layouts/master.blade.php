@@ -16,6 +16,8 @@
 
     @include('layouts.errors')
 
+    @include('flash::message')
+
     @yield('content')
 
 </div>

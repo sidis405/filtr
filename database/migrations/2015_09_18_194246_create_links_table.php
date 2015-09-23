@@ -16,12 +16,16 @@ class CreateLinksTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('code')->nullable();
             $table->longText('content');
             $table->string('user_id');
             $table->string('slug');
             $table->string('domain');
             $table->string('hash');
             $table->string('status')->default(0);
+            $table->string('indexed_links')->default(0);
             $table->timestamps();
         });
     }

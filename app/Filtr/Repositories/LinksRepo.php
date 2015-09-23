@@ -34,7 +34,7 @@ class LinksRepo
 
     public function getBySlug($slug)
     {
-        return Links::with('keywords', 'entities.subtypes')->whereSlug($slug)->first();
+        return Links::with('keywords', 'entities.subtypes', 'media')->whereSlug($slug)->first();
     }
 
     public function getLinksData($url, $entities = [])

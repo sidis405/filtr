@@ -4,11 +4,18 @@ namespace Filtr\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\SearchIndex\Searchable;
+use Laracasts\Presenter\PresentableTrait;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
-class Links extends Model implements Searchable
+class Links extends Model implements Searchable, HasMedia
 {
 
-    protected $fillable = ['url', 'title', 'content', 'user_id', 'slug', 'domain', 'hash'];
+    use PresentableTrait, HasMediaTrait;
+
+    protected $fillable = ['url', 'title', 'description', 'content', 'image', 'code', 'user_id', 'slug', 'domain', 'hash'];
+
+    protected $presenter = 'Filtr\Presenters\LinksPresenter';
 
     /**
      * Returns an array with properties which must be indexed
@@ -19,6 +26,7 @@ class Links extends Model implements Searchable
     {
         $searchableProperties = [
             'title' => $this->title,
+            'description' => $this->description,
             'content' => $this->content,
             'slug' => $this->slug,
             'entities' => $this->entities,
@@ -55,19 +63,24 @@ class Links extends Model implements Searchable
         return $this->belongsTo('Filtr\Models\User');
     }
 
+    public function externals()
+    {
+        return $this->hasMany('Filtr\Models\ExternalLinks', 'link_id');
+    }
+
     public function entities()
     {
-        return $this->belongsToMany('Filtr\Models\Entities', 'entity_link', 'link_id', 'entity_id')->withPivot('count', 'relevance')->withTimestamps();
+        return $this->belongsToMany('Filtr\Models\Entities', 'entity_link', 'link_id', 'entity_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
     public function keywords()
     {
-        return $this->belongsToMany('Filtr\Models\Keywords', 'keyword_link', 'link_id', 'keyword_id')->withPivot('relevance')->withTimestamps();
+        return $this->belongsToMany('Filtr\Models\Keywords', 'keyword_link', 'link_id', 'keyword_id')->withPivot('relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
-    public static function make($url, $title, $content, $user_id, $slug, $domain, $hash)
+    public static function make($url, $title, $description, $image, $code, $content, $user_id, $slug, $domain, $hash)
     {   
-        $staff = new static(compact('url', 'title', 'content', 'user_id', 'slug', 'domain', 'hash'));
+        $staff = new static(compact('url', 'title', 'description', 'image', 'code', 'content', 'user_id', 'slug', 'domain', 'hash'));
 
         return $staff;
     }

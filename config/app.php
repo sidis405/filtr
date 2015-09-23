@@ -136,6 +136,9 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Laracasts\Flash\FlashServiceProvider',
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -148,6 +151,7 @@ return [
 
         Sid\SimpleCache\SimpleCacheServiceProvider::class,
         Spatie\SearchIndex\SearchIndexServiceProvider::class,
+        
         
     ],
 
@@ -199,6 +203,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'SearchIndex' => Spatie\SearchIndex\SearchIndexFacade::class,
+        'Flash' => 'Laracasts\Flash\Flash',
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

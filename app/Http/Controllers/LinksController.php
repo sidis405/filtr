@@ -47,6 +47,8 @@ class LinksController extends Controller
 
         if ( ! $link ) abort(404);
 
+        // return $link;
+
         $relatedByKeywords = $link->relatedByKeywords();
         $relatedByEntities = $link->relatedByEntities();
 

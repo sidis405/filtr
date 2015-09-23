@@ -1,5 +1,25 @@
 <?php
 
+function getUniquImageUrls($images, $featured)
+{
+    $out = [];
+
+    foreach ($images as $image) {
+
+        $out[] = strtok($image['value'], '?');
+    }
+    
+    $out = array_unique($out);
+
+    $featured = strtok($featured, '?');
+
+    $pos = array_search($featured, $out);
+
+    unset($out[$pos]);
+
+    return $out;
+}
+
 function sluggifyUrl($url)
 {
     return str_slug(str_replace(['.', '/'] , '-', str_replace(['www', 'http://', 'https://'], '', $url)));

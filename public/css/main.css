@@ -47,7 +47,7 @@ img {
 .article {
     width:100%;
     padding: 10px;
-    height: 44px;
+    height: 64px;
 }
 
 .article a,
@@ -83,10 +83,14 @@ img {
     height: 50px;
 }
 
-.related-matches {
+.related-matches a {
     color: #000;
     font-size: 11px;
     vertical-align: auto;
+}
+
+.related-matches a:hover {
+    text-decoration: none;
 }
 
 .global-search {

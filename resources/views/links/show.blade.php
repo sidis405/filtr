@@ -6,7 +6,9 @@
 
     <div class="col-md-9">
 
-        <h2> {!! $link->title !!} </h2>
+        <h6>Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
+
+        <h1> {!! $link->title !!} </h1>
 
         {!! $link->content !!}
 
