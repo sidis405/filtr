@@ -7,7 +7,7 @@ use Filtr\Models\Links;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Queue\SerializesModels;
 
-class LinkWasCreated extends Event
+class LinkWasProcessed extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
@@ -16,10 +16,12 @@ class LinkWasCreated extends Event
      *
      * @return void
      */
-    public function __construct(Links $link, $readability)
+    public function __construct(Links $link)
     {
-        $this->link         = $link;
-        $this->readability  = $readability;
+        $this->link = $link;
+        $this->data = array(
+            'command'=> 'reload'
+        );
     }
 
     /**
@@ -29,6 +31,6 @@ class LinkWasCreated extends Event
      */
     public function broadcastOn()
     {
-        return [];
+        return ['link_' . $this->link->id];
     }
 }

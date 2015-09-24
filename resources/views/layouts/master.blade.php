@@ -29,5 +29,8 @@
 <!-- <script src="/js/bootstrap3-typeahead.min.js"></script> -->
 <script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/main.js"></script>
+
+@yield('footer')
+
 </body>
 </html>

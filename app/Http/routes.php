@@ -1,9 +1,17 @@
 <?php
-// Event::listen('illuminate.query', function($query, $params, $time, $conn) 
-// { 
-//     Log::info(array($query, $params, $time, $conn));
-// });
-// 
+
+
+Route::get('fire', function () {
+    // this fires the event
+    event(new App\Events\EventName());
+    return "event fired";
+});
+
+Route::get('test', function () {
+    // this checks for the event
+    return view('utils.redis-test');
+});
+
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');

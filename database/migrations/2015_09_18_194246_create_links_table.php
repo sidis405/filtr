@@ -19,7 +19,7 @@ class CreateLinksTable extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->longText('code')->nullable();
-            $table->longText('content');
+            $table->longText('content')->nullable();
             $table->string('user_id');
             $table->string('slug');
             $table->string('domain');

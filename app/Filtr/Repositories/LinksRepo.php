@@ -37,14 +37,16 @@ class LinksRepo
         return Links::with('keywords', 'entities.subtypes', 'media')->whereSlug($slug)->first();
     }
 
-    public function getLinksData($url, $entities = [])
+
+    public function getReadability($url)
     {
         $content = $this->readability->filter($url);
+        return $content;
+    }
 
-        $meta = $this->semantics->extractSemanticData($content['content'], $entities);
-
-        $data = array_add($meta, 'content' , $content);
-
-        return $data;
+    public function getSemantics($content, $entities = [])
+    {
+        $meta = $this->semantics->extractSemanticData($content, $entities);
+        return $meta;
     }
 }

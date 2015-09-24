@@ -19,6 +19,15 @@ class EventServiceProvider extends ServiceProvider
     ];
 
     /**
+     * The subscriber classes to register.
+     *
+     * @var array
+     */
+    protected $subscribe = [
+        'App\Listeners\Links\LinksEventListener',
+    ];
+
+    /**
      * Register any other events for your application.
      *
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
@@ -28,6 +37,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot($events);
 
-        //
+        
     }
 }

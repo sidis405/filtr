@@ -38,6 +38,7 @@ class LinksController extends Controller
         $new_link = $this->dispatchFrom('App\Commands\Links\CreateLinkCommand', $request);
 
         return redirect()->to($new_link->slug);
+        // return view('links.debug');
 
     }
 
