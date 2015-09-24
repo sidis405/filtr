@@ -96,7 +96,8 @@
          
          if(message.data.command == 'reload')
          {
-            alert('post processing is done. time to refresh the page');
+            // alert('post processing is done. time to refresh the page');
+            $('#page-refresher').show();
          }
          
      });

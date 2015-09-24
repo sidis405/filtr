@@ -10,7 +10,7 @@
     <script>
     var socket = io('http://127.0.0.1:6001');
     socket.on("test-channel:App\\Events\\EventName", function(message){
-         // increase the power everytime we load test route
+         console.log('received 10');
          $('#power').text(parseInt($('#power').text()) + parseInt(message.data.power));
      });
 

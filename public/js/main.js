@@ -1,3 +1,9 @@
+$(document).ready(function(){
+  $("#page-refresher").click(function(){
+ location.reload();
+  });
+});
+
 $('.search-form').keyup(function(){
 
     var query = $('#main-form-input').val();

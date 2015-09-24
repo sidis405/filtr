@@ -18,6 +18,10 @@
 
     @include('flash::message')
 
+    <div class="alert alert-success" id="page-refresher" style="display:none;">
+      <span>Post processing is complete. Click on this alert to refresh the page</span>
+    </div>
+
     @yield('content')
 
 </div>

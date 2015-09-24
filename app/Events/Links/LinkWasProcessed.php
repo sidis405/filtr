@@ -11,6 +11,9 @@ class LinkWasProcessed extends Event implements ShouldBroadcast
 {
     use SerializesModels;
 
+    public $link;
+    public $data;
+
     /**
      * Create a new event instance.
      *
