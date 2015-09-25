@@ -11,8 +11,8 @@ class LinkWasCreated extends Event
 {
     use SerializesModels;
 
-    protected $link;
-    protected $readability;
+    public $link;
+    public $readability;
 
     /**
      * Constructor
