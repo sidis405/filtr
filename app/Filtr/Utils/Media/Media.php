@@ -9,7 +9,7 @@ use Filtr\Models\Links;
 */
 class Media
 {
-    public function attach(Links $model, string $file)
+    public function attach(Links $model, $file)
     {
         $stored_file = $this->getRemoteFile($file);
 
