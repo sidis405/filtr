@@ -159,7 +159,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
     /**
      * Persist keywords
      * @param  Links $link
-     * @param  Keywords $keywords
+     * @param  array $keywords
      * @property string $new_keyword->id Id of the keyword
      * @return void           
      */
@@ -181,7 +181,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
     /**
      * Persiste Entitties
      * @param  Links $link
-     * @param  Entities $entities
+     * @param  array $entities
      * @property string $new_entity->id Id of the new entity
      * @return void           
      */
