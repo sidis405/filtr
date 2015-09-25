@@ -7,7 +7,6 @@ use App\Events\Links\LinkWasCreated;
 use Event;
 use Filtr\Models\Links;
 use Filtr\Repositories\LinksRepo;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Auth;
 
 

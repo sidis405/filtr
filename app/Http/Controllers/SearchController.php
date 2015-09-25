@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use Filtr\Models\Links;
 use Filtr\Repositories\SearchRepo;
 use Illuminate\Http\Request;
 
@@ -29,8 +27,6 @@ class SearchController extends Controller
             $count = $results['hits']['total'];
 
             $results = $results['hits']['hits'];
-
-            // return $results;
 
             return view('search.show', compact('query', 'results', 'time', 'count'));
 

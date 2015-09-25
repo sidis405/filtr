@@ -2,16 +2,15 @@
 
 namespace Filtr\Utils\Media;
 
-use Vinkla\Hashids\Facades\Hashids;
+use Filtr\Models\Links;
 
 /**
 * Media Library Uploader Class
 */
 class Media
 {
-    public function attach($model, $file)
+    public function attach(Links $model, string $file)
     {
-        
         $stored_file = $this->getRemoteFile($file);
 
         $path = $model->addMedia($stored_file)->withCustomProperties(['original_url' => $file])->toCollection('images')->getUrl();

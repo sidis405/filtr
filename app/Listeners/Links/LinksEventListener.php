@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Links;
 
+use App\Events\Links\LinkWasCreated;
 use App\Jobs\Links\PostProcessLink;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
@@ -11,7 +12,7 @@ class LinksEventListener
     /**
      * Handle link creation post processing
      */
-    public function onLinkCreation($event) {
+    public function onLinkCreation(LinkWasCreated $event) {
 
 
         $this->dispatch(new PostProcessLink($event));
