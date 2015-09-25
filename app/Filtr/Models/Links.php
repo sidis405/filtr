@@ -8,10 +8,15 @@ use Laracasts\Presenter\PresentableTrait;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
+/**
+ * @property string $title Title
+ */
 class Links extends Model implements Searchable, HasMedia
 {
 
     use PresentableTrait, HasMediaTrait;
+
+
 
     protected $fillable = ['url', 'title', 'description', 'content', 'image', 'code', 'user_id', 'slug', 'domain', 'hash'];
 
