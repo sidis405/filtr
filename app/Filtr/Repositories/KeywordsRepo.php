@@ -10,10 +10,10 @@ use Filtr\Models\Keywords;
 class KeywordsRepo
 {
     /**
-     * Persist an entity
-     * @param  Filtr\Models\Keywords $entity entity model
+     * Persist an keyword
+     * @param  \Filtr\Models\Keywords $keyword keyword model
      * @property string $slug Slug
-     * @return Filtr\Models\Keywords           entity model
+     * @return \Filtr\Models\Keywords           keyword model
      */
     public function save(Keywords $keyword)
     {

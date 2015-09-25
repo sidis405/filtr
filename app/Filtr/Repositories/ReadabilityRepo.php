@@ -19,9 +19,7 @@ class ReadabilityRepo
         $readability->debug = $debug;
         $readability->convertLinksToFootnotes = $footnotes;
 
-        $readability->init();
-
-        if ($result) {
+        if ($readability->init()) {
             return ['title' => $readability->getTitle()->textContent, 'content' => $readability->getContent()->innerHTML];
         } else {
 

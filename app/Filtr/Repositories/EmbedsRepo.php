@@ -2,7 +2,6 @@
 
 namespace Filtr\Repositories;
 
-use Embed\Adapters\AdapterInterface;
 
 /**
 * EmbedsRepo
@@ -16,8 +15,6 @@ class EmbedsRepo
 
         $info = \Embed\Embed::create($url);
 
-        if($info instanceof AdapterInterface)
-        {
 
         $content['title'] = $info->title;
         $content['description'] = $info->description;
@@ -31,8 +28,5 @@ class EmbedsRepo
 
         return $content;
 
-        }else{
-            return null;
-        }
     }
 }

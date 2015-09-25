@@ -213,6 +213,13 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         }
     }
 
+    /**
+     * Attach Subtypes
+     * @param  Entities $entity   
+     * @property string $id Subtype Id To Attach
+     * @param  Subtypes $subtypes 
+     * @return void
+     */
     public function attachSubtypes($entity, $subtypes)
     {
         foreach ($subtypes as $name) {

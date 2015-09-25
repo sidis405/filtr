@@ -17,7 +17,7 @@ class LinkWasCreated extends Event
     /**
      * Constructor
      * @param Links  $link        Link modesl
-     * @param string $readability Readability data
+     * @param array $readability Readability data
      */
     public function __construct(Links $link, $readability)
     {
