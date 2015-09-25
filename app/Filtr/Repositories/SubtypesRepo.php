@@ -17,7 +17,6 @@ class SubtypesRepo
      */
     public function save(Subtypes $subtype)
     {
-
         $existing = $this->getByName($subtype->name);
 
         if (  $existing ) return $existing;

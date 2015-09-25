@@ -6,6 +6,11 @@ use Spatie\SearchIndex\Searchable;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $text Text
+ * @property string $id Id
+ * @property string $slug Slug
+ */
 class Keywords extends Model implements Searchable
 {
     protected $fillable = ['text', 'slug'];

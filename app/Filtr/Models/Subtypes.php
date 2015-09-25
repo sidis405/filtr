@@ -4,6 +4,9 @@ namespace Filtr\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @param string $name Name
+ */
 class Subtypes extends Model
 {
     protected $fillable = ['name'];

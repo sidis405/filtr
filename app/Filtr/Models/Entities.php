@@ -4,6 +4,11 @@ namespace Filtr\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property integer $id Id
+ * @property string $text Text
+ * @property string $slug Slug
+ */
 class Entities extends Model
 {
     protected $fillable = ['type', 'text', 'slug', 'name', 'website', 'geo'];
