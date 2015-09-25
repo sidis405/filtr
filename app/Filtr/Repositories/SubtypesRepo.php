@@ -12,7 +12,7 @@ class SubtypesRepo
     /**
      * Persist subtypes
      * @param  Subtypes $subtype Subtype model
-     * @property string $subtype->name Name of subtype
+     * @property string $name Name of subtype
      * @return Subtypes           Subtype model
      */
     public function save(Subtypes $subtype)

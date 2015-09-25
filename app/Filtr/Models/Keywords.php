@@ -12,7 +12,7 @@ class Keywords extends Model implements Searchable
 
     /**
      * Returns an array with properties which must be indexed
-     * @property string $this->text Text of the keyword
+     * @property string $text Text of the keyword
      * @return array
      */
     public function getSearchableBody()
