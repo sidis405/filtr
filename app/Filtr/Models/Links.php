@@ -19,13 +19,13 @@ class Links extends Model implements Searchable, HasMedia
 
     /**
      * Returns an array with properties which must be indexed
-     * @param string $title Title of the article
-     * @param string $description Description of the article
-     * @param string $content Content of the article
-     * @param string $slug slug of the article
-     * @param Filtr\Models\Entities $entities entities of the article
-     * @param FIltr\Models\Keywords $keywords keywords of the article
-     * @param string $domain Domain of the article
+     * @property string $this->title Title of the article
+     * @property string $this->description Description of the article
+     * @property string $this->content Content of the article
+     * @property string $this->slug slug of the article
+     * @property Filtr\Models\Entities $this->entities entities of the article
+     * @property FIltr\Models\Keywords $this->keywords keywords of the article
+     * @property string $this->domain Domain of the article
      * @return array
      */
     public function getSearchableBody()
@@ -56,7 +56,7 @@ class Links extends Model implements Searchable, HasMedia
 
     /**
      * Return the id of the searchable subject
-     * @param string $id ID of the link model
+     * @property string $this->id ID of the link model
      * @return string
      */
     public function getSearchableId()

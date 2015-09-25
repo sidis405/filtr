@@ -156,6 +156,13 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         }
     }
 
+    /**
+     * Persist keywords
+     * @param  Links $link
+     * @param  Keywords $keywords
+     * @property string $new_keyword->id Id of the keyword
+     * @return void           
+     */
     public function attachKeywords($link, $keywords)
     {
         foreach ($keywords as $keyword) {
@@ -171,11 +178,16 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         }
     }
 
+    /**
+     * Persiste Entitties
+     * @param  Links $link
+     * @param  Entities $entities
+     * @property string $new_entity->id Id of the new entity
+     * @return void           
+     */
     public function attachEntities($link, $entities)
     {
         foreach ($entities as $entity) {
-
-
 
             if(isset($entity['disambiguated']))
             {

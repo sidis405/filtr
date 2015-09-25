@@ -13,7 +13,7 @@ class ExternalLinksRepo
      * Persist external links
      * @param  ExternalLinks $external_link External link model
      * @property string $external_link->url Url of external link
-     * @return \Filtr\Models\ExternalLink                       External link model
+     * @return \Filtr\Models\ExternalLinks                      External link model
      */
     public function save(ExternalLinks $external_link)
     {

@@ -12,9 +12,9 @@ class Titles extends Model implements Searchable
 
     /**
      * Returns an array with properties which must be indexed
-     * @param string $title Title
-     * @param string $slug Slug
-     * @param string $domain Domain
+     * @property string $this->title Title
+     * @property string $this->slug Slug
+     * @property string $this->domain Domain
      * @return array
      */
     public function getSearchableBody()
@@ -41,7 +41,7 @@ class Titles extends Model implements Searchable
 
     /**
      * Return the id of the searchable subject
-     * @param string $this->id Id of the titles models
+     * @property string $id Id of the titles models
      * @return string
      */
     public function getSearchableId()
