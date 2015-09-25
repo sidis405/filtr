@@ -15,9 +15,8 @@ class LinkWasProcessed extends Event implements ShouldBroadcast
     public $data;
 
     /**
-     * Create a new event instance.
-     *
-     * @return void
+     * Construct
+     * @param Links $link Link model
      */
     public function __construct(Links $link)
     {
@@ -29,7 +28,7 @@ class LinkWasProcessed extends Event implements ShouldBroadcast
 
     /**
      * Get the channels the event should be broadcast on.
-     *
+     * @property string $this->link->id Id of the link being processed
      * @return array
      */
     public function broadcastOn()

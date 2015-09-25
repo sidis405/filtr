@@ -75,7 +75,7 @@ class JSLikeHTMLElement extends \DOMElement
                         }
                     } else {
                         // oh well, we tried, we really did. :(
-                        // this element is now empty
+                        return [];
                     }
                 }
             }
@@ -111,4 +111,3 @@ class JSLikeHTMLElement extends \DOMElement
         return '['.$this->tagName.']';
     }
 }
-?>

@@ -9,10 +9,14 @@ use Filtr\Models\Keywords;
 */
 class KeywordsRepo
 {
-    
+    /**
+     * Persist an entity
+     * @param  Filtr\Models\Keywords $entity entity model
+     * @property string $slug Slug
+     * @return Filtr\Models\Keywords           entity model
+     */
     public function save(Keywords $keyword)
     {
-
         $existing = $this->getBySlug($keyword->slug);
 
         if (  $existing ) return $existing;

@@ -9,13 +9,11 @@ class CreateLinkCommand extends Command
     public $url;
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * Create a new link instance
+     * @param string $url the url to fetch
      */
     public function __construct($url)
     {
-        //
         $this->url = $url;
     }
 }

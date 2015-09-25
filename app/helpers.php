@@ -71,6 +71,4 @@ function mergeRelated($keywords, $entities)
 
         return $out;
     
-
-    return $out;
 }

@@ -4,7 +4,6 @@ namespace Filtr\Utils\TermExtractor;
 
 class Tagger {
 
-	//const TERM_SPEC = '!([^a-zA-Z]*)([a-zA-Z-\.]*[a-zA-Z])([^a-zA-Z]*[a-zA-Z]*)!';
 	// Modified by jpt - Turian: https://github.com/turian/topia.termextract
 	// regex [^\W\d_] = [a-zA-Z] with Unicode alphabetic character.
 	// See: http://stackoverflow.com/questions/2039140/python-re-how-do-i-match-an-alpha-character/2039476#2039476

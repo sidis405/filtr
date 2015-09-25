@@ -14,7 +14,7 @@ class LinksRepo
     public $readability;
     public $semantics;
     
-    function __construct(ReadabilityRepo $readability, SemanticRepo $semantics)
+    public function __construct(ReadabilityRepo $readability, SemanticRepo $semantics)
     {
         $this->readability = $readability;
         $this->semantics = $semantics;

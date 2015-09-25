@@ -9,17 +9,22 @@ use Filtr\Models\Subtypes;
 */
 class SubtypesRepo
 {
-    
-    public function save(Subtypes $entity)
+    /**
+     * Persist subtypes
+     * @param  Subtypes $subtype Subtype model
+     * @property string $subtype->name Name of subtype
+     * @return Subtypes           Subtype model
+     */
+    public function save(Subtypes $subtype)
     {
 
-        $existing = $this->getByName($entity->name);
+        $existing = $this->getByName($subtype->name);
 
         if (  $existing ) return $existing;
 
-        $entity->save();
+        $subtype->save();
 
-        return $entity;
+        return $subtype;
     }
 
     public function getByName($name)

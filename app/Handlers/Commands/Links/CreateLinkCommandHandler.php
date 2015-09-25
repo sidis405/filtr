@@ -18,8 +18,6 @@ class CreateLinkCommandHandler
 
     /**
      * Create the command handler.
-     *
-     * @return void
      */
     public function __construct(LinksRepo $links)
     {
@@ -38,16 +36,16 @@ class CreateLinkCommandHandler
         $readability_data = $this->links->getReadability($command->url);
 
         $link_object = Links::make(
-                $command->url, //mandatory
-                $readability_data['title'], //mandatory
-                null, //$embed_data['description'],
-                null, //strtok($embed_data['image'], '?'),
-                null, //$embed_data['code'],
+                $command->url, 
+                $readability_data['title'], 
+                null,
+                null,
+                null,
                 $readability_data['content'],
-                Auth::user()->id, //mandatory
-                sluggifyUrl($command->url), //mandatory
-                getDomainFromUrl($command->url),//mandatory
-                md5(sluggifyUrl($command->url))//mandatory
+                Auth::user()->id, 
+                sluggifyUrl($command->url), 
+                getDomainFromUrl($command->url),
+                md5(sluggifyUrl($command->url))
             );
 
         $link = $this->links->save($link_object);

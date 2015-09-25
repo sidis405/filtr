@@ -11,7 +11,10 @@ abstract class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    function __construct() {
+    public $isSignedIn;
+    public $user;
+
+    public function __construct() {
         $this->user = $this->isSignedIn = \Auth::user();
         view()->share('user', $this->user);
         view()->share('isSignedIn', $this->isSignedIn);

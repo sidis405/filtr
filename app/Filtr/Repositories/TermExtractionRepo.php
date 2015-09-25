@@ -17,9 +17,7 @@ class TermExtractionRepo
         $out = [];
         $extractor = new TermExtractor();
         $terms = $extractor->extract($text);
-        // We're outputting results in plain text...
-        // header('Content-Type: text/plain; charset=UTF-8');
-        // Loop through extracted terms and print each term on a new line
+
         foreach ($terms as $term_info) {
             // index 0: term
             // index 1: number of occurrences in text

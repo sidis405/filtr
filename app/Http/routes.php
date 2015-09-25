@@ -22,7 +22,7 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('images/{path}', function (League\Glide\Server $server, Illuminate\Http\Request $request, $path) {
+Route::get('images/{path}', function (League\Glide\Server $server, Illuminate\Http\Request $request) {
 
     $server->outputImage($request);
 

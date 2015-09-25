@@ -11,11 +11,8 @@ use Illuminate\Http\Request;
 
 class LinksController extends Controller
 {
-
     public function __construct()
     {
-        // $this->middleware('cachebefore');
-        // $this->middleware('cacheafter');
         $this->middleware('auth', ['only' => ['store']]);
         parent::__construct();
     }
@@ -29,24 +26,25 @@ class LinksController extends Controller
 
     public function store(CreateLinkRequest $request, LinksRepo $links)
     {
-
         $link = $links->getBySlug(sluggifyUrl($request->input('url')));
 
-        if ( $link ) return redirect()->to($link->slug);
+        if ($link) {
+            return redirect()->to($link->slug);
+        }
  
 
         $new_link = $this->dispatchFrom('App\Commands\Links\CreateLinkCommand', $request);
 
         return redirect()->to($new_link->slug);
-        // return view('links.debug');
-
     }
 
     public function show($slug, LinksRepo $links)
     {
         $link = $links->getBySlug($slug);
 
-        if ( ! $link ) abort(404);
+        if (! $link) {
+            abort(404);
+        }
 
         // return $link;
 

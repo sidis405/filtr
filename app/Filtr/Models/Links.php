@@ -19,7 +19,13 @@ class Links extends Model implements Searchable, HasMedia
 
     /**
      * Returns an array with properties which must be indexed
-     *
+     * @param string $this->title Title of the article
+     * @param string $this->description Description of the article
+     * @param string $this->content Content of the article
+     * @param string $this->slug slug of the article
+     * @param Filtr\Models\Entities $this->entities entities of the article
+     * @param FIltr\Models\Keywords $this-keywords keywords of the article
+     * @param string $this->domain Domain of the article
      * @return array
      */
     public function getSearchableBody()
@@ -50,7 +56,7 @@ class Links extends Model implements Searchable, HasMedia
 
     /**
      * Return the id of the searchable subject
-     *
+     * @param string $this->id ID of the link model
      * @return string
      */
     public function getSearchableId()
@@ -58,6 +64,7 @@ class Links extends Model implements Searchable, HasMedia
         return $this->id;
     }
 
+    
     public function user()
     {
         return $this->belongsTo('Filtr\Models\User');

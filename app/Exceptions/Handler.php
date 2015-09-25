@@ -47,12 +47,6 @@ class Handler extends ExceptionHandler
             $e = new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        // if ($e instanceof ErrorException) {
-        //     abort(405);
-        // }
-
-        // dd($e);
-
         return parent::render($request, $e);
     }
 }

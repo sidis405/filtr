@@ -11,10 +11,13 @@ class LinkWasCreated extends Event
 {
     use SerializesModels;
 
+    protected $link;
+    protected $readability;
+
     /**
-     * Create a new event instance.
-     *
-     * @return void
+     * Constructor
+     * @param Links  $link        Link modesl
+     * @param string $readability Readability data
      */
     public function __construct(Links $link, $readability)
     {

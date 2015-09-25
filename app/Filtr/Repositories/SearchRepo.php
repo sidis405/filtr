@@ -22,6 +22,8 @@ class SearchRepo
 
     public function makeQuery($string, $highlight_field, $type = 'links')
     {
+        $params = [];
+        
         $params['type'] = $type;
 
         $params['body'] = array(

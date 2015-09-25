@@ -19,20 +19,14 @@ class ReadabilityRepo
         $readability->debug = $debug;
         $readability->convertLinksToFootnotes = $footnotes;
 
-        $result = $readability->init();
+        $readability->init();
 
-        $out = '';
-
-        // if ($result) {
+        if ($result) {
             return ['title' => $readability->getTitle()->textContent, 'content' => $readability->getContent()->innerHTML];
-            // $out .= "<h2>".$readability->getTitle()->textContent . "</h2>". "\n\n";
-            // $content = $readability->getContent()->innerHTML;
-            // $out .= $content;
-        // } else {
+        } else {
 
-        //     throw new ErrorException;
-        //     // return ['title' => 'Count not fetch title', 'content' => 'Could not fetch content'];
-        // }
+            throw new ErrorException('Could not fetch content');
+        }
 
     }
 

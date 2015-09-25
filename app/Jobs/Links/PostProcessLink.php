@@ -46,8 +46,6 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
     /**
      * Create a new job instance.
-     *
-     * @return void
      */
     public function __construct(LinkWasCreated $event)
     {
@@ -70,17 +68,14 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-        // \Log::info($this->event->link->slug);
 
         //GET REMOTE DATA
-        // logger('getting remote emantic and embed data');
         $semantic_data = $this->links->getSemantics($this->readability->content, ['keywords', 'entities']);
         $embed_data = $this->embeds->fetch($this->event->link->url);
 
         
 
         // PROCESS Images and parse image link
-        // logger('attaching images and parsing image links');
         $this->attachImages($this->link, $embed_data);
         
         $parsed_for_images_content = $this->parseImageLinks($this->link);
@@ -88,7 +83,6 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
 
         //UPDATE LINK WITH EMBED_DATA AND NEW IMAGE LINKS
-        // logger('persisiting the model with the newl collected data');
         $this->link->update([
             'description' => $embed_data['description'],
             'image' => strtok($embed_data['image'], '?'),
@@ -98,17 +92,13 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         
 
         //ATTACH RELATED DATA
-        // logger('attaching keywords');
         $this->attachKeywords($this->link, $semantic_data['keywords']);
         
-        // logger('attaching entities');
         $this->attachEntities($this->link, $semantic_data['entities']);
         
-        // logger('attaching external links');
         $this->attachExternalLinks($this->link);
 
 
-        // logger('ES INdexing');
         SearchIndex::upsertToIndex($this->link);
 
         Event::fire(new LinkWasProcessed($this->link));
@@ -131,7 +121,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
                    $external_links_object = ExternalLinks::make($link->id, $url);
 
-                    $new_external_link = $this->external_links->save($external_links_object);
+                   $this->external_links->save($external_links_object);
             }
     }
 
@@ -141,7 +131,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
         $content = $link->content;
 
-        for($i = 0; $i < count($images); $i++)
+        $total_images_count = count($images);
+
+        for($i = 0; $i < $total_images_count; $i++)
         {
             $find = urldecode($images[$i]['custom_properties']['original_url']);
             $replace= $images[$i]->getUrl();

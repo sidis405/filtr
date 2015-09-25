@@ -2,17 +2,22 @@
 
 namespace Filtr\Repositories;
 
+use Embed\Adapters\AdapterInterface;
+
 /**
 * EmbedsRepo
 */
 class EmbedsRepo
 {
     
-    function fetch($url)
+    public function fetch($url)
     {
         $content = [];
 
         $info = \Embed\Embed::create($url);
+
+        if($info instanceof AdapterInterface)
+        {
 
         $content['title'] = $info->title;
         $content['description'] = $info->description;
@@ -25,5 +30,9 @@ class EmbedsRepo
         $content['publishedDate'] = $info->publishedDate;
 
         return $content;
+
+        }else{
+            return null;
+        }
     }
 }
