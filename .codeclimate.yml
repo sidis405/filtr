@@ -5,5 +5,6 @@ languages:
   PHP: true
   Python: false
 exclude_paths:
-- "app/Filtr/Utils/*"
 - "app/Filtr/Utils/"
+- "public/"
+- "resources/"
