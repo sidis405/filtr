@@ -4,6 +4,8 @@ $(document).ready(function(){
   });
 });
 
+
+
 $('.search-form').keyup(function(){
 
     var query = $('#main-form-input').val();
@@ -118,6 +120,45 @@ function addCsrfToken()
 
     $('<input>').attr('type','hidden').attr('name','_token').val(token).appendTo('#main-form');
 }
+
+function loadNextArticle(){
+
+  var item = $(document).find('.load-next:last');
+
+  if ( $(item).data('load') == true)
+  {
+    var slug = $(document).find('.load-next:last').data("next");
+
+        if(articles.indexOf(slug) < 0){
+
+          articles.push(slug);
+
+          $.ajax({
+                url: '/load/' + slug,
+                type: 'GET',
+                success: function(data) {
+    
+                    $('#article-container').append(data);
+    
+                    return false;
+                },
+                error: function(XMLHttpRequest, textstatus, error) {
+    
+                    return false;
+    
+                }
+            });
+    
+            return false;
+          }
+
+        }
+        return false
+
+}
+
+
+
 
 function removeCsrfToken()
 {

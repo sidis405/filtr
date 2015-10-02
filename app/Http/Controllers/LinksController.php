@@ -38,6 +38,22 @@ class LinksController extends Controller
 
     public function show($slug, LinksRepo $links)
     {
+        list($link, $related) = $this->getLink($slug, $links);
+
+        return view('links.show', compact('link', 'related'));
+    }
+
+    public function showAjax($slug, LinksRepo $links)
+    {
+        list($link, $related) = $this->getLink($slug, $links);
+
+        return view('links.article', compact('link', 'related'));
+    }
+
+
+
+    public function getLink($slug, LinksRepo $links)
+    {
         $link = $links->getBySlug($slug);
 
         if (! $link) {
@@ -49,6 +65,7 @@ class LinksController extends Controller
 
         $related = mergeRelated($relatedByKeywords, $relatedByEntities);
 
-        return view('links.show', compact('link', 'related'));
+        return [$link, $related];
     }
+
 }

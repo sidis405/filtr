@@ -36,4 +36,5 @@ Route::get('search', 'SearchController@searchLinks');
 Route::get('search-titles-keywords', 'SearchController@searchTitlesKeywords');
 Route::get('destroy', 'SearchController@destroy');
 
+Route::get('/load/{slug}', 'LinksController@showAjax');
 Route::get('{slug}', 'LinksController@show');

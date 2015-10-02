@@ -27,6 +27,8 @@
               </span>
             </div>
           </form>
+
+          <!-- <div id="progress-read">0</div> -->
     
         <div class="navbar-user">
           @if(isset($isSignedIn) && $isSignedIn)
@@ -36,4 +38,13 @@
           @endif
         </div>
        </div><!--/.nav-collapse -->
+<div class="row" id="post_progressbar">
+      <div style="height:3px;   margin-right: -4%;" class="progress">
+        <div id="progress-container" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" >
+          <div id="progressNumber"></div>
+        </div>
+      </div>
+      <div id="response"></div>
+</div>
 </nav>
+
