@@ -129,9 +129,11 @@ function loadNextArticle(){
   {
     var slug = $(document).find('.load-next:last').data("next");
 
-        if(articles.indexOf(slug) < 0){
+        // if(articles.indexOf(slug) < 0){
 
-          articles.push(slug);
+          // articles.push(slug);
+          
+          
 
           $.ajax({
                 url: '/load/' + slug,
@@ -149,8 +151,8 @@ function loadNextArticle(){
                 }
             });
     
-            return false;
-          }
+          //   return false;
+          // }
 
         }
         return false
