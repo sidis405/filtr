@@ -41,9 +41,11 @@ class Links extends Model implements Searchable, HasMedia
             'description' => $this->description,
             'content' => $this->content,
             'slug' => $this->slug,
+            'url' => $this->url,
             'entities' => $this->entities,
             'keyword' => $this->keywords,
-            'domain' => $this->domain
+            'domain' => $this->domain,
+            'image' => $this->image
         ];
 
         return $searchableProperties;

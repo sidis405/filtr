@@ -4,6 +4,12 @@ $(document).ready(function(){
   });
 });
 
+$(document).ready(function() {
+    $("img").error(function(){
+        $(this).remove();
+    });
+});
+
 // $(document).ready(function(){
 
 //   var previousScroll = 0,

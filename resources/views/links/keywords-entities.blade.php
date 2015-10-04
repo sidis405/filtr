@@ -1,4 +1,17 @@
 <div class="col-md-12">
+    
+
+    <div class="article-userinfo">
+        <div>
+            <img src="http://www.gravatar.com/avatar/{{ md5($link->user->email) }}" alt="{{$link->user->name}}" class="img-circle pull-right" style="width:40px">
+        </div>
+        <div>{{ $link->user->name }}</div>
+        <small>{{ $link->created_at->format("F j, Y, g:i a") }}</small>
+    </div>
+
+</div>
+
+<div class="col-md-12">
             
             <h5>Keywords</h5>
             @if(count($link->keywords))
@@ -6,9 +19,9 @@
             <ul>
                     
                 @foreach(array_slice($link->keywords->toArray(), 0, 10) as $keyword)
-                        
+                        @if(floor($keyword['pivot']['relevance']*100) > 50)  
                         <li><a href="/keyword/{{$keyword['slug']}}">{{ $keyword['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($keyword['pivot']['relevance']*100) }}%</span></li>
-
+                        @endif
                 @endforeach
 
             </ul>
@@ -24,9 +37,10 @@
             <ul>
                     
                 @foreach(array_slice($link->entities->toArray(), 0, 10) as $entity)
-                        
+                      
+                      @if(floor($entity['pivot']['relevance']*100) > 50)  
                         <li><a href="/entity/{{$entity['slug']}}">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
-
+                      @endif
                 @endforeach
 
             </ul>
