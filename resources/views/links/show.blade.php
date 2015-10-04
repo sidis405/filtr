@@ -1,5 +1,6 @@
 @extends('layouts.master')
 
+@section('title', $link->title)
 @section('content')
 
 <div id="article-container">
