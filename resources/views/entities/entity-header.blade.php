@@ -1,6 +1,6 @@
 
         <div class="image-header">
-            <div class="image" style="background-image:url('/fetched/entities.jpg?w=500&h=100&fit=crop&blur=20'); background-size:cover; width:100%" class="img-responsive">
+            <div class="image" style="background-image:url('/images/entities.jpg?w=500&h=100&fit=crop&blur=20'); background-size:cover; width:100%" class="img-responsive">
                 <div class="image-header-overlay container">
                     <h1> {{ $entity->text }} </h1>
                     <h5 class="pull-left"> {{ $entity->type }} </h5>
