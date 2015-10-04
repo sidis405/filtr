@@ -19,7 +19,7 @@ class Entities extends Model
 
     public function links()
     {
-        return $this->belongsToMany('Filtr\Models\Keywords', 'entity_link', 'entity_id', 'link_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
+        return $this->belongsToMany('Filtr\Models\Links', 'entity_link', 'entity_id', 'link_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
     public function subtypes()

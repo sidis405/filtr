@@ -34,7 +34,7 @@ Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
 Route::get('seed', 'LinksController@seed');
 
-Route::get('entities/screenshots', 'EntitiesController@updateScreenshots');
+Route::get('entities/bulk-screenshots', 'EntitiesController@updateScreenshots');
 Route::get('entities/{slug}', 'EntitiesController@show');
 
 Route::get('build', 'SearchController@makeElasticIndex');

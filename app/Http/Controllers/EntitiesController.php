@@ -19,7 +19,10 @@ class EntitiesController extends Controller
     {
         $entity = $entities->getBySlug($slug);
 
-        return $entity;
+        // return $entity;
+
+        return view('entities.show', compact('entity'));
+
     }
 
     public function updateScreenshots(EntitiesRepo $entities)

@@ -4,11 +4,7 @@
 
 <div id="article-container">
 
-
-
     @include('links.article')
-
-
 
 </div>
 
