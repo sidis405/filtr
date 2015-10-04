@@ -156,7 +156,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
         foreach(getUniquImageUrls($embed_data['images'], $embed_data['image']) as $image)
         {
-            if(strlen($image) >1 ){
+            if(strlen($image) > 5 ){
                 $this->media->attach($link, $image);
             }
         }
