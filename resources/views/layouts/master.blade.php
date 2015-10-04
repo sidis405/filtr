@@ -16,7 +16,7 @@
 @include('layouts.main-bar')
 
 
-<div class="container">
+<div class="container-custom">
 
     @include('layouts.errors')
 

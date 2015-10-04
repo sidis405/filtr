@@ -60,7 +60,21 @@ img {
   position: fixed;
 }
 
+.image-header{
+  height: 20%;
+}
 
+.image-header-overlay {
+  padding: 30px;
+  color: #fff!important;
+  text-shadow: 1px 1px 1px #454545;
+}
+
+.image-header-overlay-link,
+.image-header-overlay-link:hover {
+  color: #fff!important;
+  text-decoration: none!important;
+}
 
 .main-bar {
 
@@ -70,10 +84,14 @@ img {
 
 }
 
+#article-container {
+  width: 98%;
+}
+
 .navbar-form input {
     /*width: 90% !important;*/
 }
-.container {
+.article-header-container {
     margin-top: 80px !important;
 }
 

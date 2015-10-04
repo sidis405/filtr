@@ -1,12 +1,11 @@
-<div class="row single-article" id="{{ $link->slug }}">
+<div class="row article-header-container">
+        @include('links.article-header')
+</div>
+
+<div class="container" id="{{ $link->slug }}">
 
     <div class="col-md-9">
 
-        <h6>Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
-        <h6>{{  $link->author_name }}</h6>
-
-        <h1> {!! $link->title !!} </h1>
-        <h5> Read time aprox <i class="fa fa-clock-o"></i> {{ $link->time_to_read }}m </h5>
 
         {!! $link->content !!}
 
