@@ -26,6 +26,7 @@ class SubtypesRepo
         return $subtype;
     }
 
+
     public function getByName($name)
     {
         return Subtypes::whereName($name)->first();

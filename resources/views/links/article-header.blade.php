@@ -11,14 +11,14 @@
     
         <div class="container article-header-info">
             <h6 class="pull-left">Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
-            <h6>{{  $link->author_name }}</h6>
+            <h6 class="pull-left">&nbsp {{  $link->author_name }}</h6>
         </div>
 
     @else
 
         <div class="container article-header-info">
             <h6 class="pull-right">Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
-            <h6>{{  $link->author_name }}</h6>
+            <h6 class="pull-left">&nbsp {{  $link->author_name }}</h6>
 
             <h1> {!! $link->title !!} </h1>
             <h5> Read time aprox <i class="fa fa-clock-o"></i> {{ $link->time_to_read }}m </h5>

@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Entities extends Model
 {
-    protected $fillable = ['type', 'text', 'slug', 'name', 'website', 'geo'];
+    protected $fillable = ['type', 'text', 'slug', 'name', 'website', 'geo', 'screenshot'];
     public function keywords()
     {
         return $this->belongsToMany('Filtr\Models\Keywords', 'entity_keyword', 'entity_id', 'keyword_id')->withTimestamps();
@@ -19,7 +19,7 @@ class Entities extends Model
 
     public function links()
     {
-        return $this->belongsToMany('Filtr\Models\Keywords', 'entity_link', 'entity_id', 'link_id')->withTimestamps();
+        return $this->belongsToMany('Filtr\Models\Keywords', 'entity_link', 'entity_id', 'link_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
     public function subtypes()

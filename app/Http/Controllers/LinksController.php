@@ -56,6 +56,7 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+
         $current_stream = Session::get('current_stream');
 
         $current_stream[] = $slug;
@@ -91,6 +92,12 @@ class LinksController extends Controller
 
         return 'Done seeding. Await reply.';
 
+    }
+
+    public function parse(LinksRepo $links)
+    {
+        
+        $links->parseContent();
     }
 
 }

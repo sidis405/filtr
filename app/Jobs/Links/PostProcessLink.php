@@ -27,6 +27,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Auth;
 use SearchIndex;
+use Spatie\Browsershot\Browsershot;
 
 class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 {
@@ -87,7 +88,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
             'description' => $embed_data['description'],
             // 'image' => strtok($embed_data['image'], '?'),
             'code' => $embed_data['code'],
-            'author_name' => $embed_data['author_name'],
+            'author_name' => strip_tags($embed_data['author_name']),
             'content' => $parsed_for_images_content
             ]);
         
@@ -97,7 +98,12 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         
         $this->attachEntities($this->link, $semantic_data['entities']);
         
-        $this->attachExternalLinks($this->link);
+        list($link_urls, $link_text) = $this->getContentLinks($this->link);
+
+        $this->attachExternalLinks($this->link, $link_urls);
+        
+        $this->parseItemsOnlyOnce($this->link, 'entities');
+        $this->parseItemsOnlyOnce($this->link, 'keywords');
 
         $this->link->update(['status' => 1]);
 
@@ -108,10 +114,28 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         Event::fire(new LinkWasProcessed($this->link));
     }
 
-
-
-    public function attachExternalLinks($link)
+    public function parseItemsOnlyOnce($link, $type)
     {
+        $content = $link->content;
+        $obj = $link->$type;
+
+        $link_text = $this->getContentLinks($link);
+
+        foreach ($obj as $item) {
+
+            if( ! isContainedInElementsOfArray($item->text, $link_text[1]) && $item->pivot->relevance > 0.5){
+                $content = str_replace_first($item->text, '<a href="/' .$type. '/' . $item->slug . ' "class="' . $type . '">' .$item->text.'</a>', $content);
+            }
+        }
+
+        $link->update(['content' => $content]);
+    }
+
+    public function getContentLinks($link)
+    {
+        $links = [];
+        $link_text = [];
+
         $html = new \DOMDocument();
 
         $content = $link->content;
@@ -122,12 +146,28 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         $anchors = $html->getElementsByTagName('a');
             foreach ($anchors as $anchor) {
                    $url = $anchor->getAttribute('href');
+                   $text = $anchor->nodeValue;
+
+                   $links[] = $url;
+                   $link_text[] = $text;
+            }
+
+        return [$links, $link_text];
+        
+    }    
+
+
+    public function attachExternalLinks($link, $urls)
+    {
+            foreach ($urls as $url) {
 
                    $external_links_object = ExternalLinks::make($link->id, $url);
 
                    $this->external_links->save($external_links_object);
             }
     }
+
+    
 
     public function parseImageLinks($link)
     {
@@ -222,6 +262,13 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
             $new_entity = $this->entities->save($entity_object);
 
+            // if(strlen($new_entity->website) > 1 && filter_var($entity->website, FILTER_VALIDATE_URL))
+            // {
+            //     $this->takeScreenshowOfWebsite($entity->website);
+            // }
+
+
+
             $link->entities()->attach($new_entity->id, ['relevance' => $entity['relevance'], 'count' => $entity['count']]);
 
             if(isset($entity['disambiguated']['subType'])){
@@ -229,6 +276,19 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
             }
 
         }
+    }
+
+    public function takeScreenshowOfWebsite($url)
+    {
+        // dd(public_path().'/screenshots/'. str_slug($url) . '.jpg');
+        $browsershot = new Browsershot();
+        $browsershot
+            ->setURL($url)
+            ->setWidth('1024')
+            ->setHeight('768')
+            ->save(public_path().'/screenshots/'. str_slug($url) . '.jpg');
+
+            return '/screenshots/'. str_slug($url)  . '.jpg';
     }
 
     /**

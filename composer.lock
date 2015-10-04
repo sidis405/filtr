@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe7f8a23368f9944958c53c1e228af8b",
-    "content-hash": "f3167fd64dcdc69f114fcac9e5675a76",
+    "hash": "4ef2ab381174e9b7ae7a75e16610525a",
+    "content-hash": "98be607f4b0824769269e4ac3492ddec",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1924,6 +1924,60 @@
                 "laravel-simple-cache"
             ],
             "time": "2015-09-14 13:45:31"
+        },
+        {
+            "name": "spatie/browsershot",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/browsershot.git",
+                "reference": "06e7d488832600f2b23450272fac93837b9c8504"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/06e7d488832600f2b23450272fac93837b9c8504",
+                "reference": "06e7d488832600f2b23450272fac93837b9c8504",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "intervention/image": "2.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.1"
+            },
+            "bin": [
+                "bin/phantomjs"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Spatie\\Browsershot": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "Convert a webpage to an image",
+            "homepage": "https://github.com/spatie/browsershot",
+            "keywords": [
+                "browser",
+                "convert",
+                "image",
+                "laravel",
+                "phantomjs",
+                "screenshot",
+                "webpage"
+            ],
+            "time": "2015-08-23 21:34:40"
         },
         {
             "name": "spatie/laravel-glide",

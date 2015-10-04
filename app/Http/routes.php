@@ -13,6 +13,7 @@ Route::get('test', function () {
 });
 
 // Authentication routes...
+// 
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('logout', 'Auth\AuthController@getLogout');
@@ -28,9 +29,13 @@ Route::get('images/{path}', function (League\Glide\Server $server, Illuminate\Ht
 
 })->where('path', '.*');
 
+Route::get('parse', 'LinksController@parse');
 Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
 Route::get('seed', 'LinksController@seed');
+
+Route::get('entities/screenshots', 'EntitiesController@updateScreenshots');
+Route::get('entities/{slug}', 'EntitiesController@show');
 
 Route::get('build', 'SearchController@makeElasticIndex');
 Route::get('search', 'SearchController@searchLinks');

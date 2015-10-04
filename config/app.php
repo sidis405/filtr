@@ -151,6 +151,7 @@ return [
 
         Sid\SimpleCache\SimpleCacheServiceProvider::class,
         Spatie\SearchIndex\SearchIndexServiceProvider::class,
+        'Spatie\Browsershot\BrowsershotServiceProvider'
         
         
     ],

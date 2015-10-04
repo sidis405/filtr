@@ -16,7 +16,7 @@
             <h5>Keywords</h5>
             @if(count($link->keywords))
             
-            <ul>
+            <ul class="sidebar-list">
                     
                 @foreach(array_slice($link->keywords->toArray(), 0, 10) as $keyword)
                         @if(floor($keyword['pivot']['relevance']*100) > 50)  
@@ -34,7 +34,7 @@
         <div class="col-md-12">
             <h5>Entities</h5>
             @if(count($link->entities))
-            <ul>
+            <ul class="sidebar-list">
                     
                 @foreach(array_slice($link->entities->toArray(), 0, 10) as $entity)
                       
