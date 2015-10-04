@@ -21,7 +21,7 @@
                         <div class="related-matches">
         
 
-                            @foreach($data['matches'] as $match_slug => $match_data)
+                            @foreach(array_slice($data['matches'], 0, 8) as $match_slug => $match_data)
                                 
                                 <a href="/{{$match_data[0]['type']}}/{{$match_slug}}">{{$match_data[0]['text']}}</a> |
                     
