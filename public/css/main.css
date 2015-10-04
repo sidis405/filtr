@@ -37,7 +37,8 @@ font-family: 'Rock Salt', cursive;*/
 }*/
 
 img {
-    width: 50%;
+    width: 100%;
+    /*width: 50%;*/
     height: auto;
     float: left;
     margin-right: 2%;
@@ -89,6 +90,8 @@ img {
   text-decoration: none!important;
 }
 
+
+
 .main-bar {
 
     background-color: #fff;
@@ -101,11 +104,17 @@ img {
   width: 98%;
 }
 
+#article-container ol,
+#article-container ul {
+  display: inline-block;
+}
+
 .navbar-form input {
     /*width: 90% !important;*/
 }
 .article-header-container {
     margin-top: 51px !important;
+    width:103%;
 }
 
 .article {
