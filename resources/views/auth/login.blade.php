@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="admin-container col-md-offset-5 col-md-2">
+<div class="admin-container col-md-offset-5 col-md-2" style="margin-top:80px">
 
 
 <form  method="POST" action="/auth/login" class="form-horizontal">

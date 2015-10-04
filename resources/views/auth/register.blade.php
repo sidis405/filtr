@@ -3,7 +3,7 @@
 
 @section("content")
 
-<div class="col-md-offset-3 col-md-6">
+<div class="col-md-offset-3 col-md-6"  style="margin-top:80px">
 
 <form  method="POST" action="/auth/register" class="form-horizontal">
 
