@@ -140,7 +140,7 @@ class Links extends Model implements Searchable, HasMedia
                     INNER JOIN links ON (r2.link_id = links.id) 
                     WHERE r1.link_id = '{$this->id}' and entities.id = r1.entity_id 
                     GROUP BY links.id, entities.id
-                    HAVING (relevance > 0)
+                    HAVING (relevance > 1)
                     ORDER BY relevance DESC")
                     )
                     ;
