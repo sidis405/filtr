@@ -11,6 +11,11 @@ class Media
 {
     public function attach(Links $model, $file)
     {
+	if ( strlen($file) < 5){
+                logger('some wrong '  . $file);
+                return '';
+        }
+
         $stored_file = $this->getRemoteFile($file);
 
         $path = $model->addMedia($stored_file)->withCustomProperties(['original_url' => $file])->toCollection('images')->getUrl();
@@ -20,6 +25,7 @@ class Media
 
     public function getRemoteFile($file)
     {
+
         $data = file_get_contents($file);
 
         $new_name = '/fetched/'.time().'.jpg';

@@ -29,7 +29,7 @@ class LinksRepo
 
     public function getLatest($howMany = 15)
     {
-        return Links::with('keywords', 'entities.subtypes')->latest()->simplePaginate($howMany);
+        return Links::with('keywords', 'entities.subtypes')->whereStatus(1)->latest()->simplePaginate($howMany);
     }
 
     public function getBySlug($slug)
