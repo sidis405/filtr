@@ -5,10 +5,17 @@ $(document).ready(function(){
 });
 
 $(document).ready(function() {
-    $("img").error(function(){
+    cleanup();
+});
+
+function cleanup(){
+  $("img").error(function(){
         $(this).remove();
     });
-});
+
+    $(".slideshow").remove();
+}
+
 
 // $(document).ready(function(){
 
@@ -169,7 +176,7 @@ function loadNextArticle(){
                 success: function(data) {
     
                     $('#article-container').append(data);
-    
+                    cleanup();
                     return false;
                 },
                 error: function(XMLHttpRequest, textstatus, error) {
