@@ -23,7 +23,7 @@ class LinksController extends Controller
 
     public function index(LinksRepo $links_repo)
     {
-        $links = $links_repo->getLatest(15);
+        $links = $links_repo->getLatest(99);
 
         return view('links.index', compact('links'));
     }
