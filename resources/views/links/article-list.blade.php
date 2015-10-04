@@ -1,7 +1,7 @@
 @foreach ($links as $link)
 
 <div class="pin">
-            <a href="/{{ $link->slug }}"><img class="img-responsive" src="{{ $link->image }}"></a>
+            <a href="/{{ $link->slug }}"><img class="img-responsive" src="{{ $link->image }}?w=200"></a>
             <div class="title" style="width:100%"><a href="/{{ $link->slug }}">{{ $link->title }}</a></div>
             <p>
                 {{ $link-> description }}
