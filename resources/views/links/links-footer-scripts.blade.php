@@ -44,7 +44,7 @@
 <script src="{{ asset('/js/socket.io.js') }}"></script>
 
     <script>
-    var socket = io('http://127.0.0.1:6001');
+    var socket = io(window.location.origin + ':6001');
     socket.on("link_{{$link->id}}:App\\Events\\Links\\LinkWasProcessed", function(message){
          
          if(message.data.command == 'reload')
