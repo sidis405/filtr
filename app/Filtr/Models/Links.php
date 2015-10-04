@@ -26,9 +26,9 @@ class Links extends Model implements Searchable, HasMedia
 
 
 
-    protected $fillable = ['url', 'title', 'description', 'content', 'image', 'code', 'user_id', 'slug', 'domain', 'hash'];
+    protected $fillable = ['url', 'title', 'description', 'content', 'author_name', 'time_to_read', 'image', 'code', 'user_id', 'slug', 'domain', 'hash'];
 
-    protected $presenter = 'Filtr\Presenters\LinksPresenter';
+    protected $presenter = 'Filtr\Presenters\LinkPresenter';
 
     /**
      * Returns an array with properties which must be indexed
@@ -90,11 +90,11 @@ class Links extends Model implements Searchable, HasMedia
         return $this->belongsToMany('Filtr\Models\Keywords', 'keyword_link', 'link_id', 'keyword_id')->withPivot('relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
-    public static function make($url, $title, $description, $image, $code, $content, $user_id, $slug, $domain, $hash)
+    public static function make($url, $title, $description, $image, $code, $content, $user_id, $slug, $domain, $hash, $time_to_read)
     {   
-        $staff = new static(compact('url', 'title', 'description', 'image', 'code', 'content', 'user_id', 'slug', 'domain', 'hash'));
+        $link = new static(compact('url', 'title', 'description', 'image', 'code', 'content', 'user_id', 'slug', 'domain', 'hash', 'time_to_read'));
 
-        return $staff;
+        return $link;
     }
 
     public function relatedByKeywords()
@@ -102,6 +102,9 @@ class Links extends Model implements Searchable, HasMedia
         return \DB::select( \DB::raw("SELECT 
                     links.id, 
                     links.title,
+                    links.description,
+                    links.image,
+                    links.time_to_read,
                     links.slug as link_slug,
                     links.domain,
                     keywords.text,
@@ -123,6 +126,9 @@ class Links extends Model implements Searchable, HasMedia
         return \DB::select( \DB::raw("SELECT 
                     links.id, 
                     links.title,
+                    links.description,
+                    links.image,
+                    links.time_to_read,
                     links.slug as link_slug,
                     links.domain,
                     entities.text,

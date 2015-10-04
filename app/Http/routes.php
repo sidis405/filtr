@@ -22,7 +22,7 @@ Route::get('logout', 'Auth\AuthController@getLogout');
 Route::get('register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('image/{path}', function (League\Glide\Server $server, Illuminate\Http\Request $request) {
+Route::get('images/{path}', function (League\Glide\Server $server, Illuminate\Http\Request $request) {
 
     $server->outputImage($request);
 
@@ -30,6 +30,7 @@ Route::get('image/{path}', function (League\Glide\Server $server, Illuminate\Htt
 
 Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
+Route::get('seed', 'LinksController@seed');
 
 Route::get('build', 'SearchController@makeElasticIndex');
 Route::get('search', 'SearchController@searchLinks');

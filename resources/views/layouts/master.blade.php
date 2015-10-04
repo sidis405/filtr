@@ -5,6 +5,8 @@
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+            
     <meta name="csrf_token" content="{{csrf_token()}}">
 </head>
 <body>
@@ -22,6 +24,10 @@
       <span>Post processing is complete. Click on this alert to refresh the page</span>
     </div>
 
+    <div class="alert alert-warning" id="page-processing" style="display:none;">
+      <span>This article is now being processed. You will be notified as soon as Linkr is done working.</span>
+    </div>
+
     @yield('content')
 
 </div>
@@ -34,6 +40,7 @@
 <!-- <script src="/js/bootstrap3-typeahead.min.js"></script> -->
 <script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/jquery.viewport.mini.js"></script>
+<script src="/js/jquery.sticky-kit.min.js"></script>
 <script src="/js/main.js"></script>
 
 @yield('footer')

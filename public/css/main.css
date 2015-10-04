@@ -10,9 +10,9 @@ body {
   height: 1px!important;
 }
 
-.active {
+/*.active {
   background-color: red;
-}
+}*/
 
 img {
     width: 50%;
@@ -42,6 +42,17 @@ img {
    transition: all .1s ease;
  }
 
+
+.sidebar {
+    height: 100%;
+  }
+
+.is_stuck {
+  position: fixed;
+}
+
+
+
 .main-bar {
 
     background-color: #fff;
@@ -61,8 +72,8 @@ img {
     width:100%;
     padding: 10px;
     height: 64px;
-    margin-bottom: 60px;
-    background-color: green;
+    /*margin-bottom: 60px;*/
+    /*background-color: green;*/
 }
 
 .article a,
@@ -87,6 +98,17 @@ img {
     font-size: 12px;
     vertical-align: auto;
 }
+
+.timer {
+    float: left;
+
+    color: #000;
+    font-size: 13px;
+    margin-top: 5px;
+    /*vertical-align: auto;*/
+}
+
+
 
 .related-links {
     width:100%;
@@ -226,3 +248,5 @@ em {
     column-count: 5;
   }
 }
+
+

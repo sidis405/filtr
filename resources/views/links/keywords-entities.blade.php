@@ -35,3 +35,20 @@
             @endif
 
         </div>
+
+       
+
+            {{-- */$links = $link->present()->getNextArticlePreview($related);/* --}}
+
+            @if(count($links) > 0)
+            
+            <div class="col-md-12 next-preview" id="next-preview">
+                
+                <h5>Coming Up Next</h5>
+
+                @include('links.article-list', ['preview' => true])
+
+            </div>
+
+            @endif
+

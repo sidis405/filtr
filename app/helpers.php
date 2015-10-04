@@ -37,7 +37,14 @@ function mergeRelated($keywords, $entities)
 
     foreach($entities as $ent)
     {
-        $out[$ent->link_slug]['info'] = ['title' => $ent->title, 'domain' => $ent->domain];
+        $out[$ent->link_slug]['info'] = [
+            'title' => $ent->title,
+            'domain' => $ent->domain,
+            'description' => $ent->description,
+            'image' => $ent->image,
+            'time_to_read' => $ent->time_to_read,
+            'slug' => $ent->link_slug
+            ];
 
         if ( ! isset ($out[$ent->link_slug]['matches'][$ent->entity_slug])){
             $out[$ent->link_slug]['matches'][$ent->entity_slug][] = ['text' => $ent->text, 'type' => 'entity'];
@@ -51,7 +58,14 @@ function mergeRelated($keywords, $entities)
 
     foreach($keywords as $key)
     {
-        $out[$key->link_slug]['info'] = ['title' => $key->title,  'domain' => $key->domain];
+        $out[$key->link_slug]['info'] = [
+            'title' => $key->title,
+            'domain' => $key->domain,
+            'description' => $key->description,
+            'image' => $key->image,
+            'time_to_read' => $key->time_to_read,
+            'slug' => $key->link_slug
+            ];
 
         if ( ! isset ($out[$key->link_slug]['matches'][$key->keyword_slug])){
             $out[$key->link_slug]['matches'][$key->keyword_slug][] = ['text' => $key->text, 'type' => 'keyword'];

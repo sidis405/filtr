@@ -3,8 +3,10 @@
     <div class="col-md-9">
 
         <h6>Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
+        <h6>{{  $link->author_name }}</h6>
 
         <h1> {!! $link->title !!} </h1>
+        <h5> Read time aprox <i class="fa fa-clock-o"></i> {{ $link->time_to_read }}m </h5>
 
         {!! $link->content !!}
 
@@ -34,7 +36,7 @@
         </div>
         
 
-        <div class="load-next" data-next="{{ array_keys($related)[0] }}" data-load ="true"></div>
+        <div class="load-next" {{ $link->present()->getNextArticleForLoad(array_keys($related)) }}></div>
         @else
         <div class="load-next" data-load = "false"></div>
         
@@ -44,7 +46,7 @@
 
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 sidebar" data-sticky_parent>
         
         @include('links.keywords-entities')
 

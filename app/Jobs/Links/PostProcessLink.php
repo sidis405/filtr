@@ -85,8 +85,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         //UPDATE LINK WITH EMBED_DATA AND NEW IMAGE LINKS
         $this->link->update([
             'description' => $embed_data['description'],
-            'image' => strtok($embed_data['image'], '?'),
+            // 'image' => strtok($embed_data['image'], '?'),
             'code' => $embed_data['code'],
+            'author_name' => $embed_data['author_name'],
             'content' => $parsed_for_images_content
             ]);
         
@@ -98,6 +99,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         
         $this->attachExternalLinks($this->link);
 
+        $this->link->update(['status' => 1]);
+
+        \Cache::forget($this->link->slug);
 
         SearchIndex::upsertToIndex($this->link);
 
@@ -152,7 +156,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
         foreach(getUniquImageUrls($embed_data['images'], $embed_data['image']) as $image)
         {
-           $this->media->attach($link, $image);
+            if(strlen($image) >1 ){
+                $this->media->attach($link, $image);
+            }
         }
     }
 

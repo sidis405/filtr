@@ -23,6 +23,8 @@ class EmbedsRepo
         $content['image'] = $info->image;
 
         $content['code'] = $info->code;
+        
+        $content['author_name'] = $info->authorName;
 
         $content['publishedDate'] = $info->publishedDate;
 

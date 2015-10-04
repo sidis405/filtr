@@ -32,20 +32,42 @@ class CreateLinkCommandHandler
     public function handle(CreateLinkCommand $command)
     {
 
-        $readability_data = $this->links->getReadability($command->url);
+
+        // logger($command->url);
+
+        if ( is_array($command->url)){
+
+            $urls = $command->url;
+
+            foreach ($urls as $url) {
+                logger($url);
+                $this->process($url);
+            }
+        } else {
+            return $this->process($command->url);
+        }
+
+        
+    }
+
+    public function process($url)
+    {
+        $readability_data = $this->links->getReadability($url);
 
         $link_object = Links::make(
-                $command->url, 
+                $url, 
                 $readability_data['title'], 
                 null,
                 null,
                 null,
                 $readability_data['content'],
                 Auth::user()->id, 
-                sluggifyUrl($command->url), 
-                getDomainFromUrl($command->url),
-                md5(sluggifyUrl($command->url))
+                sluggifyUrl($url), 
+                getDomainFromUrl($url),
+                md5(sluggifyUrl($url)),
+                round(str_word_count($readability_data['content'], 0)/130)
             );
+
 
         $link = $this->links->save($link_object);
 

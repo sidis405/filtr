@@ -6,12 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\Links\CreateLinkRequest;
 use Filtr\Repositories\LinksRepo;
+use Filtr\Repositories\ScratchRepo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class LinksController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['store']]);
+        // $this->middleware('cachebefore', ['only' => ['show', 'showAjax']]);
+        // $this->middleware('cacheafter', ['only' => ['show', 'showAjax']]);
         parent::__construct();
     }
 
@@ -40,12 +46,20 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+        Session::put('current_stream', [$slug]);
+
         return view('links.show', compact('link', 'related'));
     }
 
     public function showAjax($slug, LinksRepo $links)
     {
         list($link, $related) = $this->getLink($slug, $links);
+
+        $current_stream = Session::get('current_stream');
+
+        $current_stream[] = $slug;
+
+        Session::put('current_stream', $current_stream);
 
         return view('links.article', compact('link', 'related'));
     }
@@ -68,4 +82,15 @@ class LinksController extends Controller
         return [$link, $related];
     }
 
+    public function seed(Request $request, ScratchRepo $scratch)
+    {
+        $links = $scratch->seedUrls();
+
+            $this->dispatchFrom('App\Commands\Links\CreateLinkCommand', array_add($request, 'url', $links));
+
+        return 'Done seeding. Await reply.';
+
+    }
+
 }
+
