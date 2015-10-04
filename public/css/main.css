@@ -2,6 +2,15 @@ body {
     font-size: 16px !important;
 }
 
+/*font-family: 'Playball', cursive;
+font-family: 'Rock Salt', cursive;*/
+
+.logo {
+  font-family: 'Playball', cursive!important;
+}
+
+/*h1 { font-family: ‘Metrophobic’, Arial, serif; font-weight: 400; }*/
+
 .thumb {
   width: 200px;
 }

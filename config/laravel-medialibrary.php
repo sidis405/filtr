@@ -25,7 +25,7 @@ return [
      * if your files are stored locally above the site root or on s3.
      */
     // 'custom_url_generator_class' => '',
-    'custom_url_generator_class' => 'Filtr\Utils\MediaLibraryUrlGenerator',
+    'custom_url_generator_class' => 'Filtr\Utils\Media\MediaLibraryUrlGenerator',
 
 
     's3' => [

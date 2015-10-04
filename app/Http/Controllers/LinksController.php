@@ -46,6 +46,8 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+        return $link->getMedia()[0]->getUrl();
+
         Session::put('current_stream', [$slug]);
 
         return view('links.show', compact('link', 'related'));
