@@ -142,7 +142,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
             $find = urldecode($images[$i]['custom_properties']['original_url']);
             $replace= $images[$i]->getUrl();
 
-            $content = str_replace($find, $replace, $content);
+            $content = str_replace($find, $replace.'?', $content);
         }
 
         return $content;
