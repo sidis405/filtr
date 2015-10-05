@@ -67,7 +67,7 @@ class SystemController extends Controller
     {
         $exists= false;
 
-        exec("ps -A | grep -i $processName | grep -v grep", $pids);
+        exec("ps -ef | grep -i $processName | grep -v grep", $pids);
 
         if (count($pids) > 0) {
             $exists = true;
