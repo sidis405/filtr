@@ -46,16 +46,19 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+        $title = $link->title;
 
         Session::put('current_stream', [$slug]);
 
-        return view('links.show', compact('link', 'related'));
+        return view('links.show', compact('link', 'related', 'title'));
+;
     }
 
     public function showAjax($slug, LinksRepo $links)
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+        $title = $link->title;
 
         $current_stream = Session::get('current_stream');
 
@@ -63,7 +66,9 @@ class LinksController extends Controller
 
         Session::put('current_stream', $current_stream);
 
-        return view('links.article', compact('link', 'related'));
+        $view = view('links.article', compact('link', 'related', 'title'));
+        $sections = $view->renderSections();
+        return $view;
     }
 
 

@@ -1,4 +1,4 @@
-<div class="single-article"  id="{{ $link->slug }}">
+<div class="single-article"  id="{{ $link->slug }}" data-title="{{ $link->title }}">
     <div class="row article-header-container">
             @include('links.article-header')
     </div>

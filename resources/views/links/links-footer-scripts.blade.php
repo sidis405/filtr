@@ -1,37 +1,10 @@
 <script>
-     $(document).ready(function(){
+    //  $(document).ready(function(){
 
-    $(".next-preview").stick_in_parent({recalc_every: 1});
+    // $(".next-preview").stick_in_parent({recalc_every: 1});
 
-    });
-// $(document).find('.next-preview').stickyfloat({ 
-//     duration: 0,
-//     startOffset: 200
-//      });
-    // var articles = ['{{ $link->slug }}']
-    // $(document).ready(function(){
-    //     $(".next-preview").sticky({topSpacing:60});
-    //   });
-    // $(function(){ // document ready
- 
-    //   var stickyTop = $(document).find('.next-preview').offset().top; // returns number 
-     
-    //   $(window).scroll(function(){ // scroll event  
-     
-    //     var windowTop = $(window).scrollTop()+60; // returns number
-     
-    //     if (stickyTop < windowTop) {
-    //       $('.next-preview').addClass('next-preview-fixed');
-    //     }
-    //     else {
-    //         $('.next-preview').removeClass('next-preview-fixed');
-    //     //   $('.next-preview').css('position','static');
-    //     //   $('.next-preview').css('width','100%');
-    //     }
-     
-    //   });
-     
     // });
+
 </script>
 
 <script>
@@ -64,6 +37,10 @@
             $('#progress-container').attr('aria-valuenow', 0);
             $('#progress-container').css('width', '0%');
 
+            var stream = [];
+
+            var current_history_id = '';
+
              $(document).on('scroll',  function () {
                 
                 var articles = $('.single-article:in-viewport');
@@ -77,10 +54,22 @@
                 }
 
                 var articleId = $(currentArticle).attr('id');
+                var articleTitle = $(currentArticle).data('title');
 
-                // console.log(articleId);
+                document.title = 'Filtr - ' + articleTitle;
+                
+                if(current_history_id !== articleId)
+                {
+                  window.history.pushState("string", articleId, articleId);
 
-                window.history.pushState("string", "Title", articleId);
+                    // if(stream.indexOf(articleId) < 0)
+                    // {
+                      current_history_id = articleId;
+                      // stream.push(articleId); 
+                    // }
+                    
+                }
+
 
                 // $('.preview_container').removeClass('next-preview');
                 // $('#next_preview_' + articleId).addClass('next-preview');
