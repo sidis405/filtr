@@ -30,6 +30,7 @@ Route::get('images/{path}', function (League\Glide\Server $server, Illuminate\Ht
 })->where('path', '.*');
 
 Route::get('parse', 'LinksController@parse');
+Route::get('status', 'SystemController@index');
 Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
 Route::get('seed', 'LinksController@seed');

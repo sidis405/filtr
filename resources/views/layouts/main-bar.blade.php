@@ -27,7 +27,7 @@
               
               <div class="navbar-user">
                 @if(isset($isSignedIn) && $isSignedIn)
-                <button class="btn btn-default pull-right">{{$user->name}}</button>
+                <a href="/status" class="btn btn-default pull-right">{{$user->name}}</a>
                 <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" alt="{{$user->name}}" class="img-circle pull-right" style="width:32px">
                 @else
                 <a class="btn btn-default pull-right" href="/login">Login</a>
