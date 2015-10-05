@@ -78,7 +78,7 @@
 
                 var articleId = $(currentArticle).attr('id');
 
-                console.log(articleId);
+                // console.log(articleId);
 
                 window.history.pushState("string", "Title", articleId);
 

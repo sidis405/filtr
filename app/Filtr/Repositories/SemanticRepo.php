@@ -32,14 +32,25 @@ class SemanticRepo
     {
         $response = $this->alchemy->keywords($type, $url, null);
 
-        return $response['keywords'];
+        if(isset($response['keywords']))
+        {
+            return $response['keywords'];
+        }
+
+        return [];
     }
 
     public function getEntities($type, $url)
     {
         $response = $this->alchemy->entities($type, $url, null);
 
-        return $response['entities'];
+        if(isset($response['entities']))
+        {
+            return $response['entities'];
+        }
+
+        return [];
+
     }
     
 }
