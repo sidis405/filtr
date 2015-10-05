@@ -22,11 +22,11 @@
 
     @include('flash::message')
 
-    <div class="alert alert-success" id="page-refresher" style="display:none;">
+    <div class="alert alert-success" id="page-refresher" style="display:none; margin-top:80px">
       <span>Post processing is complete. Click on this alert to refresh the page</span>
     </div>
 
-    <div class="alert alert-warning" id="page-processing" style="display:none;">
+    <div class="alert alert-warning" id="page-processing" style="display:none;  margin-top:80px">
       <span>This article is now being processed. You will be notified as soon as Linkr is done working.</span>
     </div>
 
