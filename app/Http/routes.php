@@ -38,7 +38,7 @@ Route::get('seed', 'LinksController@seed');
 Route::get('entities/bulk-screenshots', 'EntitiesController@updateScreenshots');
 Route::get('entities/{slug}', 'EntitiesController@show');
 
-Route::get('keyword/{q}', function($q){
+Route::get('keywords/{q}', function($q){
     return redirect()->to('/search?q=' . urlencode(str_replace('-', ' ', $q)));
 });
 
