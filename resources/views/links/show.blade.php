@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', '- ' . $title)
+@section('title', $title)
 @section('content')
 
 <div id="article-container">
