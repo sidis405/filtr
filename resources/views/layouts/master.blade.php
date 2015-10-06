@@ -8,12 +8,19 @@
     <link href="/css/tooltips.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt|Playball|Roboto' rel='stylesheet' type='text/css'>
+    
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/snackbar.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/material.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">    
             
     <meta name="csrf_token" content="{{csrf_token()}}">
-    <meta name="user" content=@if($isSignedIn) "{{$user->id}}" @else "0" @endif>
+    <meta name="user" content=@if(isset($isSignedIn) && $isSignedIn) "{{$user->id}}" @else "0" @endif>
 </head>
 <body>
 
@@ -48,6 +55,7 @@
 <script src="/js/jquery.viewport.mini.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
 <!-- <script src="/js/jquery.sticky-kit.min.js"></script> -->
+<script src="/js/snackbar.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/tooltips.js"></script>
 

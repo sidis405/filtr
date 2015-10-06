@@ -241,6 +241,10 @@ $(document).on('click', '.entity-follow', function(e){
   // return false;
 
   var entity_id = $(this).data('id');
+  var entity_slug = $(this).data('slug');
+  var entity_text = $(this).data('text');
+
+  // console.log($(document).find('#entity_' + entity_slug));
 
   var token = $('meta[name="csrf_token"]').attr('content');
   var user_id = $('meta[name="user"]').attr('content').replace(' ', '');
@@ -249,19 +253,46 @@ $(document).on('click', '.entity-follow', function(e){
     $(this).removeClass('entity-followtrue');
     $(this).addClass('entity-followfalse');
     $(this).text('Follow');
+
+    var method = 'DELETE';
+
+    snack("You have unfollowed '" + entity_text + "'");
+
   }else{
     $(this).addClass('entity-followtrue');
     $(this).removeClass('entity-followfalse');
     $(this).text('Unfollow');
+
+    var method = 'POST';
+
+    snack("You are now following '" + entity_text + "'");
+
   }
 
-  $(document).find('.entities').tooltipster('destroy');
+  var mirrored_item = $(document).find('#entity_' + entity_slug).find('.entity-follow');
+
+  if($(mirrored_item).hasClass('entity-followtrue')){
+    $(mirrored_item).removeClass('entity-followtrue');
+    $(mirrored_item).addClass('entity-followfalse');
+    $(mirrored_item).text('Follow');
+  }else{
+    $(mirrored_item).addClass('entity-followtrue');
+    $(mirrored_item).removeClass('entity-followfalse');
+    $(mirrored_item).text('Unfollow');
+  }
+
+$(document).find('#entity_the-npd-group').find('.entity-follow');
+
+// $(document).find('.entities').tooltipster('destroy');
   tooltips();
+
+
+  $(document).find('.entities').tooltipster('destroy');
 
    $.ajax({
                 url: '/user/' + user_id + '/entities',
                 type: 'POST',
-                data: {_token:token, entity_id:entity_id},
+                data: {_token:token, entity_id:entity_id, _method: method},
                 success: function(data) {
                           
                 },
@@ -273,3 +304,18 @@ $(document).on('click', '.entity-follow', function(e){
             });
 
 });
+
+
+function snack(text)
+{ console.log('called');
+  var options =  {
+      content: text
+  }
+
+  return $.snackbar(options);
+}
+
+
+
+
+

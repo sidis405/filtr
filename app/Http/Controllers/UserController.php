@@ -15,9 +15,15 @@ class UserController extends Controller
     
     }
 
-    public function entities($id, Request $request)
+    public function addUserEntities($id, Request $request)
     {
-        \Auth::user()->entities()->sync([$request->input('entity_id')]);
+        \Auth::user()->entities()->attach([$request->input('entity_id')]);
+        return 'true';
+    }
+
+    public function deleteUserEntities($id, Request $request)
+    {
+        \Auth::user()->entities()->detach([$request->input('entity_id')]);
         return 'true';
     }
 

@@ -32,4 +32,5 @@ Route::get('destroy', 'SearchController@destroy');
 Route::get('/load/{slug}', 'LinksController@showAjax');
 Route::get('{slug}', 'LinksController@show');
 
-Route::post('/user/{id}/entities', 'UserController@entities');
+Route::post('/user/{id}/entities', 'UserController@addUserEntities');
+Route::delete('/user/{id}/entities', 'UserController@deleteUserEntities');
