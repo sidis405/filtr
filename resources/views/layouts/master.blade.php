@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>@yield('title')</title>
-
+    @section('title', 'Filtr')
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/tooltipster.css" rel="stylesheet">
     <link href="/css/tooltips.css" rel="stylesheet">
