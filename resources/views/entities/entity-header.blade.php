@@ -9,13 +9,13 @@
                     <div class="pull-right screenshot-container" >
                         <a class="image-header-overlay-link" href="{{$entity->website}}" target="blank">
                             <img src="{{$entity->screenshot}}" class="screenshot">
-                            <a class="btn btn-default btn-info" style="text-shadow: none; width:100%" class="image-header-overlay-link" href="{{$entity->website}}" target="blank">Visit website</a>
+                            <a class="btn btn-default btn-info" style="text-shadow: none; width:90%" class="image-header-overlay-link" href="{{$entity->website}}" target="blank">Visit website</a>
                         </a>
                     </div>
                     @else
                         @if(strlen ( $entity->website) > 2 )
                             <div class="pull-right" >
-                                    <a class="btn btn-default btn-info" style="text-shadow: none; width:100%" class="image-header-overlay-link" href="{{$entity->website}}" target="blank">Visit website</a>
+                                    <a class="btn btn-default btn-info" style="text-shadow: none; width:90%" class="image-header-overlay-link" href="{{$entity->website}}" target="blank">Visit website</a>
                             </div>
                         @endif
                     @endif
