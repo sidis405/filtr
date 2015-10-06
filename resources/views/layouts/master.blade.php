@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Filtr @yield('title')</title>
+    <title>@yield('title')</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/tooltipster.css" rel="stylesheet">
