@@ -17,7 +17,7 @@ abstract class Controller extends BaseController
     public function __construct() {
         $this->user = $this->isSignedIn = \Auth::user();
         view()->share('user', $this->user);
-        view()->share('title', $title);
+        view()->share('title', 'Filtr');
         view()->share('isSignedIn', $this->isSignedIn);
     }
 }
