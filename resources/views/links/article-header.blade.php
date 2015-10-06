@@ -10,14 +10,14 @@
         </div>
     
         <div class="container article-header-info">
-            <h6 class="pull-left">Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
+            <h6 class="pull-left"><i class="fa fa-external-link"></i>&nbsp;Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
             <h6 class="pull-left">&nbsp {{  $link->author_name }}</h6>
         </div>
 
     @else
 
         <div class="container article-header-info">
-            <h6 class="pull-right">Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
+            <h6 class="pull-right"><i class="fa fa-external-link"></i>&nbsp;Original Link: <a href="{{ $link->url }}" target="_blank">{{ $link->url }}</a></h6>
             <h6 class="pull-left">&nbsp {{  $link->author_name }}</h6>
 
             <h1> {!! $link->title !!} </h1>

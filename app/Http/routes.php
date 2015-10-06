@@ -33,7 +33,7 @@ Route::get('parse', 'LinksController@parse');
 Route::get('status', 'SystemController@index');
 Route::get('/', 'LinksController@index');
 Route::post('/', 'LinksController@store');
-Route::get('seed', 'LinksController@seed');
+Route::get('bulk-seed', 'LinksController@seed');
 
 Route::get('entities/bulk-screenshots', 'EntitiesController@updateScreenshots');
 Route::get('entities/{slug}', 'EntitiesController@show');
