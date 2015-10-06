@@ -5,7 +5,7 @@ function tooltips(){
     $(document).find('.entities').tooltipster({
         interactive: true,
         multiple: true,
-        // content: 'Loading...',
+        content: 'Loading...',
         contentCloning: false,
         contentAsHTML: true,
         // autoClose: false,
