@@ -46,6 +46,8 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
+        // return $link;
+
         $title = $link->title;
 
         Session::put('current_stream', [$slug]);

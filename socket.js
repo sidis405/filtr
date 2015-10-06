@@ -15,7 +15,7 @@ function handler(req, res) {
 }
 
 io.on('connection', function(socket) {
-    socket.emit('ping', { payload: 'connected' });
+    socket.emit('ping', { payload: 'Successfully connected to socket. Awaiting connections.' });
     console.log('client connected')
 });
 

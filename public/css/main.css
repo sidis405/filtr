@@ -106,6 +106,16 @@ img {
   width:63%;
  }
 
+ .main-form-input {
+    border-radius: 0!important;
+    height: 31px!important;
+ }
+
+ .label {
+  border-radius: 0!important;
+  margin-right: 1px!important;
+ }
+
  #main-form .input-group {
   width: 100%;
   -webkit-transition: all .1s ease;
@@ -424,4 +434,8 @@ h2 {
  .sidebar-list li {
     font-size: 12px;
 
+ }
+
+ .list-entities {
+      color: #3B5998!important;
  }

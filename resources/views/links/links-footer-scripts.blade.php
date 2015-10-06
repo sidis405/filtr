@@ -29,7 +29,7 @@
      });
 
     socket.on("ping", function(message){
-         console.log(message);
+         console.log(message.payload);
      });
     </script>
 
@@ -92,7 +92,7 @@
                 if($(window).scrollTop() == $(document).height() - $(window).height()) {
                 // if($(window).scrollTop() > $(document).height() - $(window).height() - 200) {
                        loadNextArticle();
-                       $(document.body).trigger("sticky_kit:recalc");
+                       // $(document.body).trigger("sticky_kit:recalc");
                 }
             });
 

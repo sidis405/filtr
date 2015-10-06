@@ -100,7 +100,7 @@ class LinksRepo
 
     public function getBySlug($slug)
     {
-        return Links::with('keywords', 'entities.subtypes', 'media', 'user')->whereSlug($slug)->first();
+        return Links::with('keywords', 'entities.subtypes', 'entities.links', 'media', 'user')->whereSlug($slug)->first();
     }
 
 

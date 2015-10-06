@@ -282,13 +282,17 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
     {
         // dd(public_path().'/screenshots/'. str_slug($url) . '.jpg');
         $browsershot = new Browsershot();
-        $browsershot
+
+        $path = public_path().'/screenshots/'. str_slug($url) . '.jpg';
+
+        if ( ! file_exists($path )){
+            $browsershot
             ->setURL($url)
             ->setWidth('1024')
             ->setHeight('768')
-            ->save(public_path().'/screenshots/'. str_slug($url) . '.jpg');
-
-            return '/screenshots/'. str_slug($url)  . '.jpg';
+            ->save($path);
+        }
+        return '/screenshots/'. str_slug($url)  . '.jpg';
     }
 
     /**

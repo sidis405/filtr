@@ -177,6 +177,7 @@ function loadNextArticle(){
     
                     $('#article-container').append(data);
                     cleanup();
+                    tooltips();
                     return false;
                 },
                 error: function(XMLHttpRequest, textstatus, error) {

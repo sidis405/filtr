@@ -39,8 +39,10 @@
                 @foreach(array_slice($link->entities->toArray(), 0, 10) as $entity)
                       
                       @if(floor($entity['pivot']['relevance']*100) > 50)  
-                        <li><a href="/entity/{{$entity['slug']}}">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
+                        <li><a href="/entity/{{$entity['slug']}}" class="entities list-entities">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
                       @endif
+
+                      @include('links.entity-hovercard', array('entity->entity'))
                 @endforeach
 
             </ul>

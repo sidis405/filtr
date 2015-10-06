@@ -21,6 +21,8 @@ class EntitiesController extends Controller
 
         // return $entity;
 
+        // return view('layouts.hovercard', compact('entity'));
+
         return view('entities.show', compact('entity'));
 
     }

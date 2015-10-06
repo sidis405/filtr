@@ -4,6 +4,8 @@
     <title>Filtr @yield('title')</title>
 
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/tooltipster.css" rel="stylesheet">
+    <link href="/css/tooltips.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Rock+Salt|Playball|Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -42,8 +44,10 @@
 <!-- <script src="/js/bootstrap3-typeahead.min.js"></script> -->
 <script src="/js/bootstrap-typeahead.js"></script>
 <script src="/js/jquery.viewport.mini.js"></script>
-<script src="/js/jquery.sticky-kit.min.js"></script>
+<script src="/js/jquery.tooltipster.min.js"></script>
+<!-- <script src="/js/jquery.sticky-kit.min.js"></script> -->
 <script src="/js/main.js"></script>
+<script src="/js/tooltips.js"></script>
 
 @yield('footer')
 

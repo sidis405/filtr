@@ -11,9 +11,9 @@
             <div class="related-links">
                     <div class="related-matches">
     
-                         @foreach (array_slice($link->keywords->toArray(), 0, 3) as $keyword) 
+                         @foreach (array_slice($link->entities->toArray(), 0, 3) as $entity) 
                             
-                            <span class="label label-info"><a href="/keywords/{{$keyword['slug']}}">{{ $keyword['text'] }}</a> </span>&nbsp;
+                            <span class="label label-info"><a href="/entities/{{$entity['slug']}}">{{ $entity['text'] }}</a> </span>&nbsp;
                 
                         @endforeach
 

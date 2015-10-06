@@ -38,6 +38,10 @@ Route::get('seed', 'LinksController@seed');
 Route::get('entities/bulk-screenshots', 'EntitiesController@updateScreenshots');
 Route::get('entities/{slug}', 'EntitiesController@show');
 
+Route::get('keyword/{q}', function($q){
+    return redirect()->to('/search?q=' . urlencode(str_replace('-', ' ', $q)));
+});
+
 Route::get('build', 'SearchController@makeElasticIndex');
 Route::get('search', 'SearchController@searchLinks');
 Route::get('search-titles-keywords', 'SearchController@searchTitlesKeywords');
