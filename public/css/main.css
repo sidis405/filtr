@@ -3,6 +3,19 @@ body {
     font-family: 'Roboto'!important;
 }
 
+.entity-followtrue:hover{
+  background-color: red;
+}
+
+.entity-followtrue{
+  background-color: blue;
+  color: #fff;
+}
+
+.entity-followfalse:hover{
+  background-color: blue;
+}
+
 
 .screenshot {
   width: 200px;

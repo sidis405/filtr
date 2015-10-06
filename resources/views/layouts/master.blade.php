@@ -13,6 +13,7 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">    
             
     <meta name="csrf_token" content="{{csrf_token()}}">
+    <meta name="user" content=@if($isSignedIn) "{{$user->id}}" @else "0" @endif>
 </head>
 <body>
 

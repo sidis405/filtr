@@ -32,6 +32,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'getLogout']);
         $this->redirectTo = '/';
+        view()->share('isSignedIn', false);
     }
 
     /**

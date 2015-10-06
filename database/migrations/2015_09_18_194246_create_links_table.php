@@ -22,6 +22,7 @@ class CreateLinksTable extends Migration
             $table->longText('content')->nullable();
             $table->string('author_name')->nullable();
             $table->integer('time_to_read')->nullable();
+            $table->integer('read_counter')->default(0);
             $table->string('user_id');
             $table->string('slug');
             $table->string('domain');

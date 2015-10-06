@@ -46,8 +46,6 @@ class LinksController extends Controller
     {
         list($link, $related) = $this->getLink($slug, $links);
 
-        // return $link;
-
         $title = $link->title;
 
         Session::put('current_stream', [$slug]);
@@ -83,12 +81,24 @@ class LinksController extends Controller
             abort(404);
         }
 
+        $this->incrementReadCounter($link, $slug);
+
         $relatedByKeywords = $link->relatedByKeywords();
         $relatedByEntities = $link->relatedByEntities();
 
         $related = mergeRelated($relatedByKeywords, $relatedByEntities);
 
         return [$link, $related];
+    }
+
+    public function incrementReadCounter($link, $slug)
+    {
+        if( Session::get('last_read_article') !== $slug)
+        {
+            $link->increment('read_counter');
+            
+            Session::put('last_read_article', $slug);
+        }
     }
 
     public function seed(Request $request, ScratchRepo $scratch)

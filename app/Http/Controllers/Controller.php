@@ -19,5 +19,6 @@ abstract class Controller extends BaseController
         view()->share('user', $this->user);
         view()->share('title', 'Filtr');
         view()->share('isSignedIn', $this->isSignedIn);
+
     }
 }

@@ -26,7 +26,7 @@ class Links extends Model implements Searchable, HasMedia
 
 
 
-    protected $fillable = ['url', 'title', 'description', 'content', 'author_name', 'time_to_read', 'image', 'code', 'user_id', 'slug', 'domain', 'hash', 'status'];
+    protected $fillable = ['url', 'title', 'description', 'content', 'author_name', 'time_to_read', 'read_cunter', 'image', 'code', 'user_id', 'slug', 'domain', 'hash', 'status'];
 
     protected $presenter = 'Filtr\Presenters\LinkPresenter';
 

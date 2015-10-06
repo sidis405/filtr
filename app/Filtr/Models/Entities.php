@@ -22,6 +22,11 @@ class Entities extends Model
         return $this->belongsToMany('Filtr\Models\Links', 'entity_link', 'entity_id', 'link_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
     }
 
+    public function users()
+    {
+        return $this->belongsToMany('Filtr\Models\User', 'entity_user', 'entity_id', 'user_id')->withTimestamps();
+    }
+
     public function subtypes()
     {
         return $this->belongsToMany('Filtr\Models\Subtypes', 'entity_subtype', 'entity_id', 'subtype_id')->withTimestamps();

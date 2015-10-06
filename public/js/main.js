@@ -231,3 +231,45 @@ $(document).keydown(function(event) {
         };
     }
 );
+
+$(document).on('click', '.entity-follow', function(e){
+
+  // console.log('got it');
+
+  // e.preventDefault();
+
+  // return false;
+
+  var entity_id = $(this).data('id');
+
+  var token = $('meta[name="csrf_token"]').attr('content');
+  var user_id = $('meta[name="user"]').attr('content').replace(' ', '');
+
+  if($(this).hasClass('entity-followtrue')){
+    $(this).removeClass('entity-followtrue');
+    $(this).addClass('entity-followfalse');
+    $(this).text('Follow');
+  }else{
+    $(this).addClass('entity-followtrue');
+    $(this).removeClass('entity-followfalse');
+    $(this).text('Unfollow');
+  }
+
+  $(document).find('.entities').tooltipster('destroy');
+  tooltips();
+
+   $.ajax({
+                url: '/user/' + user_id + '/entities',
+                type: 'POST',
+                data: {_token:token, entity_id:entity_id},
+                success: function(data) {
+                          
+                },
+                error: function(XMLHttpRequest, textstatus, error) {
+    
+                    return false;
+    
+                }
+            });
+
+});
