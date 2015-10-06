@@ -56,7 +56,8 @@
                 var articleId = $(currentArticle).attr('id');
                 var articleTitle = $(currentArticle).data('title');
 
-                document.title = 'Filtr - ' + articleTitle;
+                document.title = articleTitle;
+                // document.title = 'Filtr - ' + articleTitle;
                 
                 if(current_history_id !== articleId)
                 {
