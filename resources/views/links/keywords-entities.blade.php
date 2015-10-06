@@ -20,7 +20,7 @@
                     
                 @foreach(array_slice($link->keywords->toArray(), 0, 10) as $keyword)
                         @if(floor($keyword['pivot']['relevance']*100) > 50)  
-                        <li><a href="/keyword/{{$keyword['slug']}}">{{ $keyword['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($keyword['pivot']['relevance']*100) }}%</span></li>
+                        <li><a href="/keywords/{{$keyword['slug']}}">{{ $keyword['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($keyword['pivot']['relevance']*100) }}%</span></li>
                         @endif
                 @endforeach
 
@@ -39,7 +39,7 @@
                 @foreach(array_slice($link->entities->toArray(), 0, 10) as $entity)
                       
                       @if(floor($entity['pivot']['relevance']*100) > 50)  
-                        <li><a href="/entity/{{$entity['slug']}}" class="entities list-entities">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
+                        <li><a href="/entities/{{$entity['slug']}}" class="entities list-entities">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
                       @endif
 
                       @include('links.entity-hovercard', array('entity->entity'))
