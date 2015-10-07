@@ -25,7 +25,7 @@
                                                     <div class="hr-line-dashed"></div>
                                                     <div class="search-result">
                                                         <a href="/users/{{ $user->id }}" class="pull-right">
-                                                            <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" style="width:100px">
+                                                            <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" style="width:60px">
                                                         </a>
                                                     
                                                         <h4><a href="/users/{{ $user->id }}">{{ $user->name }}</a></h4>
