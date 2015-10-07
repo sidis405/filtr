@@ -47,4 +47,23 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->belongsToMany('Filtr\Models\Entities', 'entity_user', 'user_id', 'entity_id')->withTimestamps();
     }
+
+    public function linksCount()
+    {
+      return $this->hasOne('Filtr\Models\Links')
+        ->selectRaw('user_id, count(*) as aggregate')
+        ->groupBy('user_id');
+    }
+     
+    public function getCommentsCountAttribute()
+    {
+      // if relation is not loaded already, let's do it first
+      if ( ! array_key_exists('linksCount', $this->relations)) 
+        $this->load('linksCount');
+     
+      $related = $this->getRelation('linksCount');
+     
+      // then return the count directly
+      return ($related) ? (int) $related->aggregate : 0;
+    }
 }

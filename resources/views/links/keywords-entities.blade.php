@@ -3,9 +3,9 @@
 
     <div class="article-userinfo">
         <div>
-            <img src="http://www.gravatar.com/avatar/{{ md5($link->user->email) }}" alt="{{$link->user->name}}" class="img-circle pull-right" style="width:40px">
+            <a href="/users/{{$link->user->id}}"><img src="http://www.gravatar.com/avatar/{{ md5($link->user->email) }}" alt="{{$link->user->name}}" class="img-circle pull-right" style="width:40px"></a>
         </div>
-        <div>{{ $link->user->name }}</div>
+        <div><a href="/users/{{$link->user->id}}">{{ $link->user->name }}</a></div>
         <small>{{ $link->created_at->format("F j, Y, g:i a") }}</small>
     </div>
 

@@ -30,12 +30,12 @@
                 <ul class="nav navbar-nav" style="min-width:17%; float:right">
                     <li class="dropdown  btn btn-default" style="width:93%; padding: 2px 0!important">
                       <a href="#" class="dropdown-toggle user-profile-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" alt="{{$user->name}}" class="img-circle" style="width:24px; margin-top: 2px;">
-                        <span style="margin-top: 4px; float: left;     margin-left: 10px;">{{$user->name}}</span>
+                        <img src="http://www.gravatar.com/avatar/{{ md5($currentUser->email) }}" alt="{{$currentUser->name}}" class="img-circle" style="width:24px; margin-top: 2px;">
+                        <span style="margin-top: 4px; float: left;     margin-left: 10px;">{{$currentUser->name}}</span>
                           <span class="caret " style="    margin-top: 11px; float: left; margin-left: 31px;"></span>
                       </a>
                       <ul class="dropdown-menu">
-                        <li><a href="/users/{{$user->id}}">Your Profile</a></li>
+                        <li><a href="/users/{{$currentUser->id}}">Your Profile</a></li>
                         <li><a href="/status">System Status</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/logout">Logout</a></li>

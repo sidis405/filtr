@@ -44,8 +44,8 @@
         <div class="info">
             <div class="info-inner">
                 <div class="interactions">
-                    @if($user)
-                        {!! $user->present()->entityFollowButton($entity['id'], $entity['slug'], $entity['text']) !!}
+                    @if($currentUser)
+                        {!! $currentUser->present()->entityFollowButton($entity['id'], $entity['slug'], $entity['text']) !!}
                     @else
                         <a class="btn" disabled>Follow</a>
                     @endif
