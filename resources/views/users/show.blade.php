@@ -70,9 +70,10 @@
                                  @else
 
                             <div class="col-md-12">
-                                
-                                This user has not shared any articles yet.
-
+                                <div class="hr-line-dashed"></div>
+                                    <div class="search-result">
+                                        This user has not shared any articles yet.
+                                    </div>    
                             </div> 
 
                         @endif
