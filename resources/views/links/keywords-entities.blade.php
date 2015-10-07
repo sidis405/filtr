@@ -35,14 +35,16 @@
             <h5>Entities</h5>
             @if(count($link->entities))
             <ul class="sidebar-list">
-                    
+
                 @foreach(array_slice($link->entities->toArray(), 0, 10) as $entity)
                       
                       @if(floor($entity['pivot']['relevance']*100) > 50)  
                         <li><a href="/entities/{{$entity['slug']}}" class="entities list-entities">{{ $entity['text'] }}</a>&nbsp;&nbsp;<span class="label label-info pull-right">{{ floor($entity['pivot']['relevance']*100) }}%</span></li>
                       @endif
+            
 
-                      @include('links.entity-hovercard', array('entity->entity'))
+
+
                 @endforeach
 
             </ul>
