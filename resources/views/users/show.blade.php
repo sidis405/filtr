@@ -48,7 +48,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <h2>
-                        Links shared
+                        Articles shared
                     </h2>
 
                          @if(count($user->links) >0)
@@ -71,7 +71,7 @@
 
                             <div class="col-md-12">
                                 
-                                Could not find any results matching "{{$user->text}}"
+                                This user has not shared any articles yet.
 
                             </div> 
 
