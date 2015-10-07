@@ -44,7 +44,7 @@
             
 
 
-
+                      @include('links.entity-hovercard')
                 @endforeach
 
             </ul>
