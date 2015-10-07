@@ -10,7 +10,7 @@
                     <div class="user-header-stats pull-right">
                         <div>Links shared: {{ count($user->links) }}</div>
                         <div>Entities followed: {{ count($user->entities) }} </div>
-                        <div>Score: {{ floor($user->linksCount->aggregate*3 + count($user->entities)/2) }} </div>
+                        <div>Score: {{ floor(count($user->links)*3 + count($user->entities)/2) }} </div>
                     </div>
                 </div>
             </div>
