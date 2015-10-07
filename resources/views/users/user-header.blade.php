@@ -8,7 +8,7 @@
                         <h5 class="pull-left">Joined: {{ $user->created_at->format("F j, Y") }} </h5>
                     </div>
                     <div class="user-header-stats pull-right">
-                        <div>Links shared: {{ $user->linksCount->aggregate }}</div>
+                        <div>Links shared: {{ count($user->links) }}</div>
                         <div>Entities followed: {{ count($user->entities) }} </div>
                         <div>Score: {{ floor($user->linksCount->aggregate*3 + count($user->entities)/2) }} </div>
                     </div>

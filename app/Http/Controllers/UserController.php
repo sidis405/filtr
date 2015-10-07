@@ -29,8 +29,6 @@ class UserController extends Controller
     {
         $user = $users_repo->getById($id);
 
-        return $user;
-
         return view('users.show', compact('user'));
 
     }
