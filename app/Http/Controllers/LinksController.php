@@ -16,8 +16,8 @@ class LinksController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['store']]);
-        // $this->middleware('cachebefore', ['only' => ['show', 'showAjax']]);
-        // $this->middleware('cacheafter', ['only' => ['show', 'showAjax']]);
+        $this->middleware('cachebefore', ['only' => ['show', 'showAjax']]);
+        $this->middleware('cacheafter', ['only' => ['show', 'showAjax']]);
         parent::__construct();
     }
 
@@ -93,12 +93,12 @@ class LinksController extends Controller
 
     public function incrementReadCounter($link, $slug)
     {
-        if( Session::get('last_read_article') !== $slug)
-        {
+        // if( Session::get('last_read_article') !== $slug)
+        // {
             $link->increment('read_counter');
             
-            Session::put('last_read_article', $slug);
-        }
+            // Session::put('last_read_article', $slug);
+        // }
     }
 
     public function seed(Request $request, ScratchRepo $scratch)
