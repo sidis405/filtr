@@ -18,7 +18,7 @@
               <form class="navbar-form navbar-left search-form" id="main-form" method="GET" action="/search">
                 <div class="input-group">
                   <input type="search" name="q"  id="main-form-input" class="form-control main-form-input" value="{{\Request::input('q')}}" placeholder="Start typing to search"  autocomplete="off">
-                  <span class="input-group-btn">
+                  <span class="input-group-btn" style="width:1%">
                     <button class="btn btn-default"  id="main-form-button" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                   </span>
                 </div>
@@ -27,10 +27,27 @@
               
               <div class="navbar-user">
                 @if(isset($isSignedIn) && $isSignedIn)
-                <a href="/status" class="btn btn-default pull-right">{{$user->name}}</a>
-                <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" alt="{{$user->name}}" class="img-circle pull-right" style="width:32px">
+                <ul class="nav navbar-nav" style="min-width:17%; float:right">
+                    <li class="dropdown  btn btn-default" style="width:93%; padding: 2px 0!important">
+                      <a href="#" class="dropdown-toggle user-profile-nav-link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img src="http://www.gravatar.com/avatar/{{ md5($user->email) }}" alt="{{$user->name}}" class="img-circle" style="width:24px; margin-top: 2px;">
+                        <span style="margin-top: 4px; float: left;     margin-left: 10px;">{{$user->name}}</span>
+                          <span class="caret " style="    margin-top: 11px; float: left; margin-left: 31px;"></span>
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/users/{{$user->id}}">Your Profile</a></li>
+                        <li><a href="/status">System Status</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout">Logout</a></li>
+                      </ul>
+                    </li>
+                </ul>
+
                 @else
-                <a class="btn btn-default pull-right" href="/login">Login</a>
+                <span class="pull-right">
+                  <a class="btn btn-default" href="/login">Login</a>&nbsp;
+                  <a class="btn btn-default" href="/register">Register</a>
+                </span>
                 @endif
               </div>
               </div><!--/.nav-collapse -->
