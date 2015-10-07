@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $users = $users_repo->getAll();
 
-        return $users;
+        return view('users.index', compact('users'));
     }
 
     public function show($id, UsersRepo $users_repo)

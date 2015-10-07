@@ -13,17 +13,17 @@ class UsersRepo
     
     public function getAll()
     {
-        return User::with('linksCount')->get();
+        return User::with('links')->get();
     }
 
     public function getById($id)
     {
-        return User::with('linksCount', 'entities')->whereId($id)->first();
+        return User::with('links', 'entities')->whereId($id)->first();
     }
 
     public function getByUsername($username)
     {
-        return User::with('linksCount', 'entities')->whereUsername($username)->get();
+        return User::with('links', 'entities')->whereUsername($username)->get();
     }
 
 

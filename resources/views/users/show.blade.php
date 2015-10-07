@@ -72,7 +72,7 @@
                             <div class="col-md-12">
                                 <div class="hr-line-dashed"></div>
                                     <div class="search-result">
-                                        This user has not shared any articles yet.
+                                        <small>This user has not shared any articles yet.<small>
                                     </div>    
                             </div> 
 

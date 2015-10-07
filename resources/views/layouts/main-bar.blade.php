@@ -36,6 +36,7 @@
                       </a>
                       <ul class="dropdown-menu">
                         <li><a href="/users/{{$currentUser->id}}">Your Profile</a></li>
+                        <li><a href="/users">User List</a></li>
                         <li><a href="/status">System Status</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a href="/logout">Logout</a></li>
