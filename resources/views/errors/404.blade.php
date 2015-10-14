@@ -2,10 +2,12 @@
 
 @section('content')
 
-<div class="row">
+<div class="container" style="margin-top:100px!important;">
+    <div class="row">
 
-Page Not Found
+    The Filtr minions could not find the page you were looking for. Sorry boss.
 
+    </div>
 </div>
 
 @stop

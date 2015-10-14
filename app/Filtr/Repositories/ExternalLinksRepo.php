@@ -30,5 +30,14 @@ class ExternalLinksRepo
     {
         return ExternalLinks::whereUrl($url)->first();
     }
+
+    public function getAll($onlyUnprocessed = false)
+    {
+        if($onlyUnprocessed){
+            return ExternalLinks::where('processed', 0);
+        }
+
+        return ExternalLinks::orderBy('processed', 'DESC');
+    }
     
 }

@@ -41,8 +41,15 @@
 
             var current_history_id = '';
 
+            var boot_article_id = $('.single-article').first();
+
+
+            console.log($('.single-article').first().attr('id'));
+
              $(document).on('scroll',  function () {
-                
+             // $(document).on('scroll', boot_article_id,  function () {
+
+               
                 var articles = $('.single-article:in-viewport');
                 
 
@@ -55,6 +62,7 @@
 
                 var articleId = $(currentArticle).attr('id');
                 var articleTitle = $(currentArticle).data('title');
+
 
                 document.title = articleTitle;
                 // document.title = 'Filtr - ' + articleTitle;
@@ -76,17 +84,40 @@
                 // $('#next_preview_' + articleId).addClass('next-preview');
 
 
-              var s = $(window).scrollTop(),
-                    d = $(document).height(),
-                    c = $(window).height();
+
+                    var s = realScrollTop(currentArticle);
+                    var d = $(document).find(currentArticle).height();
+                    var c = $(window).height();
                     scrollPercent = (s / (d-c)) * 100;
                     var position = scrollPercent;
 
+                    // console.log('s: ' + s);
+                    // console.log('d: ' + d);
                // $("#progress-read").html(position);
+               
+               // snack(position.toString());
+
                $('#progress-container').attr('aria-valuenow', position.toString());
               $('#progress-container').css('width', position.toString() + '%');
 
             });
+  
+
+            function realScrollTop(current_element){
+
+              var total_height = 0;
+              var current_element_height = $(current_element).height();
+
+              $(current_element).prevAll('.single-article').each(function(){
+
+                  total_height += $(this).height();
+
+              });
+
+              return $(window).scrollTop() - total_height;
+
+            }
+    
 
 
             $(window).scroll(function() {
@@ -98,3 +129,4 @@
             });
 
     </script>
+

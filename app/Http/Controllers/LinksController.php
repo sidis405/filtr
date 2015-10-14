@@ -78,7 +78,7 @@ class LinksController extends Controller
         $link = $links->getBySlug($slug);
 
         if (! $link) {
-            abort(404);
+            abort(405);
         }
 
         $this->incrementReadCounter($link, $slug);

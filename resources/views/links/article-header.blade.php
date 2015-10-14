@@ -1,4 +1,4 @@
-@if( $link->status == 1 && strlen($link->image) > 5 )
+    @if( $link->status == 1 && strlen($link->image) > 5 )
         <div class="image-header">
             <div class="image" style="background-image:url('{{$link->image}}?w=500&h=100&fit=crop&blur=20'); background-size:cover; width:100%" class="img-responsive">
                 <div class="image-header-overlay container">

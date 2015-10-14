@@ -37,6 +37,8 @@ class SearchRepo
                         )
                 ),
                 'highlight' => array(
+                        "pre_tags" => ["<result>"],
+                        "post_tags" => ["</result>"],
                          'fields' => array(
                              $highlight_field => (object) array() 
                          )

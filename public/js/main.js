@@ -203,9 +203,9 @@ function removeCsrfToken()
     $("[name='_token']").remove();
 }
 
-
+// CMD/CTRL + SHIFT + F = search
 $(document).keydown(function(event) {
-        if((event.ctrlKey || event.metaKey) && event.which == 70) {
+        if((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 70) {
             $('#search-button').trigger("click");
             event.preventDefault();
             return false;
@@ -213,8 +213,9 @@ $(document).keydown(function(event) {
     }
 );
 
+// CMD/CTRL + SHIFT + S = search
 $(document).keydown(function(event) {
-        if((event.ctrlKey || event.metaKey) && event.which == 83) {
+        if((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 83) {
             $('#search-button').trigger("click");
             event.preventDefault();
             return false;
@@ -222,7 +223,7 @@ $(document).keydown(function(event) {
     }
 );
 
-
+// CMD/CTRL + SHIFT + A = add
 $(document).keydown(function(event) {
         if((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 65) {
             $('#add-button').trigger("click");
@@ -314,8 +315,3 @@ function snack(text)
 
   return $.snackbar(options);
 }
-
-
-
-
-

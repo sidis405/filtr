@@ -16,6 +16,7 @@ Route::post('/', 'LinksController@store');
 Route::get('bulk-seed', 'LinksController@seed');
 Route::get('parse', 'LinksController@parse');
 Route::get('status', 'SystemController@index');
+Route::get('external-links', 'SystemController@externals');
 
 Route::get('entities/bulk-screenshots', 'EntitiesController@updateScreenshots');
 Route::get('entities/{slug}', 'EntitiesController@show');

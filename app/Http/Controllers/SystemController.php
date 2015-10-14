@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use Filtr\Repositories\ExternalLinksRepo;
+use Illuminate\Http\Request;
 
 class SystemController extends Controller
 {
@@ -73,6 +74,11 @@ class SystemController extends Controller
             $exists = true;
         }
         return $exists;
+    }
+
+    public function externals(ExternalLinksRepo $el)
+    {
+        return $el->getAll();
     }
 
     

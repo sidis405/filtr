@@ -11,8 +11,8 @@ class Media
 {
     public function attach(Links $model, $file)
     {
-	if ( strlen($file) < 5){
-                logger('some wrong '  . $file);
+	   if ( strlen($file) < 5){
+                logger('Something is wrong. The funtion received as input: '  . $file);
                 return '';
         }
 
@@ -26,7 +26,7 @@ class Media
     public function getRemoteFile($file)
     {
 
-        $data = file_get_contents($file);
+        $data = @file_get_contents($file);
 
         $new_name = '/fetched/'.time().'.jpg';
 

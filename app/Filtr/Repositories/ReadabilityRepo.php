@@ -12,18 +12,25 @@ class ReadabilityRepo
     
     function filter($url, $footnotes = false, $debug = false)
     {
-        $html = file_get_contents($url);
+        if( ! $html = file_get_contents($url) ) {
 
-        $readability = new Readability($html, $url);
+            abort(405);
+            // throw new ErrorException('Could not fetch content');
 
-        $readability->debug = $debug;
-        $readability->convertLinksToFootnotes = $footnotes;
+        }else{
 
-        if ($readability->init()) {
-            return ['title' => $readability->getTitle()->textContent, 'content' => $readability->getContent()->innerHTML];
-        } else {
+            $readability = new Readability($html, $url);
 
-            throw new ErrorException('Could not fetch content');
+            $readability->debug = $debug;
+            $readability->convertLinksToFootnotes = $footnotes;
+
+            if ($readability->init()) {
+                return ['title' => $readability->getTitle()->textContent, 'content' => $readability->getContent()->innerHTML];
+            } else {
+                abort(406);
+                // throw new ErrorException('Could not fetch content');
+            }
+
         }
 
     }

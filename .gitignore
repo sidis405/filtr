@@ -3,3 +3,6 @@
 Homestead.yaml
 Homestead.json
 .env
+/public/fetched
+/public/fetched_good
+.DS_Store
