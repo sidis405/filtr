@@ -97,7 +97,7 @@ class SystemController extends Controller
 
             $parsed_url = parse_url($link->url);
 
-           if( $this->checkIfContainsBlackListItem($link->url, $blacklist) || strlen($parsed_url['path']) < 2 ||
+           if( $this->checkIfContainsBlackListItem($link->url, $blacklist) || (isset($parsed_url['path']) && strlen($parsed_url['path']) < 2) ||
                         !filter_var($link->url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED) || 
                         !filter_var($link->url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED) || 
                         strpos($link->url, 'ailto:') || 
