@@ -76,9 +76,43 @@ class SystemController extends Controller
         return $exists;
     }
 
+    public function checkIfContainsBlackListItem($url, $blacklist)
+    {
+        foreach($blacklist as $black){
+            if(strpos($url, $black->url) > 0){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function externals(ExternalLinksRepo $el)
     {
-        return $el->getAll();
+        $links = $el->getAll(true);
+
+        $blacklist = $el->getBlackList();
+
+        foreach ($links as $link) {
+
+            $parsed_url = parse_url($link->url);
+
+           if( $this->checkIfContainsBlackListItem($link->url, $blacklist) || strlen($parsed_url['path']) < 2 ||
+                        !filter_var($link->url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED) || 
+                        !filter_var($link->url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED) || 
+                        strpos($link->url, 'ailto:') || 
+                        strpos($link->url, 'keywords/') || 
+                        strpos($link->url, 'entities/')
+                        ){
+                $link->update(['valid' => 0, 'processed' => 1]);
+           }
+        }
+
+        $externals = $el->getAll(true);
+
+        return view('system.externals', compact('externals'));
+
+
     }
 
     

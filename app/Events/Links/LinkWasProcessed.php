@@ -18,9 +18,10 @@ class LinkWasProcessed extends Event implements ShouldBroadcast
      * Construct
      * @param Links $link Link model
      */
-    public function __construct(Links $link)
+    public function __construct(Links $link, $isAutomated)
     {
         $this->link = $link;
+        $this->isAutomated = $isAutomated;
         $this->data = array(
             'command'=> 'reload'
         );

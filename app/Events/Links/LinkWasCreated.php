@@ -13,16 +13,18 @@ class LinkWasCreated extends Event
 
     public $link;
     public $readability;
+    public $isAutomated;
 
     /**
      * Constructor
      * @param Links  $link        Link modesl
      * @param array $readability Readability data
      */
-    public function __construct(Links $link, $readability)
+    public function __construct(Links $link, $readability, $isAutomated)
     {
         $this->link         = $link;
         $this->readability  = $readability;
+        $this->isAutomated  = $isAutomated;
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Events\Links\LinkWasCreated;
 use App\Events\Links\LinkWasProcessed;
 use App\Jobs\Job;
 use Event;
+use Filtr\Models\DomainBlacklist;
 use Filtr\Models\Entities;
 use Filtr\Models\ExternalLinks;
 use Filtr\Models\Keywords;
@@ -43,6 +44,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
     protected $subtypes;
     protected $media;
     protected $external_links;
+    protected $blacklist;
 
 
     /**
@@ -60,6 +62,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         $this->subtypes             = new SubtypesRepo;
         $this->media                = new Media;
         $this->external_links       = new ExternalLinksRepo;
+
     }
 
     /**
@@ -69,19 +72,14 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
      */
     public function handle()
     {
-
         //GET REMOTE DATA
         $semantic_data = $this->links->getSemantics($this->readability->content, ['keywords', 'entities']);
         $embed_data = $this->embeds->fetch($this->event->link->url);
-
-        
 
         // PROCESS Images and parse image link
         $this->attachImages($this->link, $embed_data);
         
         $parsed_for_images_content = $this->parseImageLinks($this->link);
-
-
 
         //UPDATE LINK WITH EMBED_DATA AND NEW IMAGE LINKS
         $this->link->update([
@@ -91,7 +89,6 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
             'author_name' => strip_tags($embed_data['author_name']),
             'content' => $parsed_for_images_content
             ]);
-        
 
         //ATTACH RELATED DATA
         $this->attachKeywords($this->link, $semantic_data['keywords']);
@@ -100,7 +97,8 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
         
         list($link_urls, $link_text) = $this->getContentLinks($this->link);
 
-        $this->attachExternalLinks($this->link, $link_urls);
+        $blacklist = $this->external_links->getBlackList();
+        $this->attachExternalLinks($this->link, $link_urls, $blacklist);
         
         $this->parseItemsOnlyOnce($this->link, 'entities');
         $this->parseItemsOnlyOnce($this->link, 'keywords');
@@ -111,7 +109,8 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
         SearchIndex::upsertToIndex($this->link);
 
-        Event::fire(new LinkWasProcessed($this->link));
+        Event::fire(new LinkWasProcessed($this->link, $this->event->isAutomated));
+
     }
 
     public function parseItemsOnlyOnce($link, $type)
@@ -157,14 +156,45 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
     }    
 
 
-    public function attachExternalLinks($link, $urls)
+    public function attachExternalLinks($link, $urls, $blacklist)
     {
+
+        $existing_el = array_pluck($link->externals->toArray(), 'id');
+
             foreach ($urls as $url) {
 
-                   $external_links_object = ExternalLinks::make($link->id, $url);
+                if(!in_array($url, $existing_el)){
 
-                   $this->external_links->save($external_links_object);
+                    $parsed_url = parse_url($url);
+                        
+                    if( $this->checkIfContainsBlackListItem($url, $blacklist) || strlen($parsed_url['path']) < 2 ||
+                        !filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED) || 
+                        !filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED) || 
+                        strpos($url, 'ailto:') || 
+                        strpos($url, 'keywords/') || 
+                        strpos($url, 'entities/')
+                        ){
+                        $external_links_object = ExternalLinks::make($link->id, $url, 0, 1);                    
+                    }else{
+                        $external_links_object = ExternalLinks::make($link->id, $url);
+                    }
+
+                       $this->external_links->save($external_links_object);
+
+                    }
+
             }
+    }
+
+    public function checkIfContainsBlackListItem($url, $blacklist)
+    {
+        foreach($blacklist as $black){
+            if(strpos($url, $black->url) > 0){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     
@@ -211,6 +241,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
      */
     public function attachKeywords($link, $keywords)
     {
+
+        $existing_keywords = array_pluck($link->keywords->toArray(), 'id');
+
         foreach ($keywords as $keyword) {
 
             $keyword_object = Keywords::make($keyword['text'], str_slug($keyword['text']));
@@ -219,7 +252,10 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
             SearchIndex::upsertToIndex($new_keyword);
 
-            $link->keywords()->attach($new_keyword->id, ['relevance' => $keyword['relevance']]);
+            if(!in_array($new_keyword->id, $existing_keywords)){
+                $link->keywords()->attach($new_keyword->id, ['relevance' => $keyword['relevance']]);
+            }
+
 
         }
     }
@@ -233,6 +269,9 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
      */
     public function attachEntities($link, $entities)
     {
+
+        $existing_entities = array_pluck($link->entities->toArray(), 'id');
+
         foreach ($entities as $entity) {
 
             if(isset($entity['disambiguated']))
@@ -268,11 +307,13 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
             // }
 
 
+            if(!in_array($new_entity->id, $existing_entities)){
+                $link->entities()->attach($new_entity->id, ['relevance' => $entity['relevance'], 'count' => $entity['count']]);
 
-            $link->entities()->attach($new_entity->id, ['relevance' => $entity['relevance'], 'count' => $entity['count']]);
+                if(isset($entity['disambiguated']['subType'])){
+                    $this->attachSubtypes($new_entity, $entity['disambiguated']['subType']);
+                }
 
-            if(isset($entity['disambiguated']['subType'])){
-                $this->attachSubtypes($new_entity, $entity['disambiguated']['subType']);
             }
 
         }

@@ -2,6 +2,7 @@
 
 namespace Filtr\Repositories;
 
+use Filtr\Models\DomainBlacklist;
 use Filtr\Models\ExternalLinks;
 
 /**
@@ -9,6 +10,12 @@ use Filtr\Models\ExternalLinks;
 */
 class ExternalLinksRepo
 {
+
+    public function getBlackList()
+    {
+        return DomainBlacklist::all();
+    }
+
     /**
      * Persist external links
      * @param  ExternalLinks $external_link External link model
@@ -34,10 +41,10 @@ class ExternalLinksRepo
     public function getAll($onlyUnprocessed = false)
     {
         if($onlyUnprocessed){
-            return ExternalLinks::where('processed', 0);
+            return ExternalLinks::with('link')->where('valid', 1)->where('processed', 0)->get();
         }
 
-        return ExternalLinks::orderBy('processed', 'DESC');
+        return ExternalLinks::with('link')->where('valid', 1)->orderBy('processed', 'DESC')->get();
     }
     
 }

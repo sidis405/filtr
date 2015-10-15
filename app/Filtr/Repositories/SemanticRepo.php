@@ -25,8 +25,6 @@ class SemanticRepo
             $data[$entity] = $this->$fname($type, $resource);
         }
 
-        logger($data);
-
         return $data;
     }
 

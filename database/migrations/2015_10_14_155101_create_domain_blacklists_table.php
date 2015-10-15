@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExternalLinksTable extends Migration
+class CreateDomainBlacklistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,9 @@ class CreateExternalLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('external_links', function (Blueprint $table) {
+        Schema::create('domain_blacklists', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('link_id');
             $table->string('url');
-            $table->string('slug')->nullable();
-            $table->integer('processed')->default(0);
-            $table->integer('valid')->default(1);
-            $table->timestamps();
         });
     }
 
@@ -30,6 +25,6 @@ class CreateExternalLinksTable extends Migration
      */
     public function down()
     {
-        Schema::drop('external_links');
+        Schema::drop('domain_blacklists');
     }
 }

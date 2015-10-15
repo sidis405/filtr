@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ExternalLinks extends Model
 {
 
-    protected $fillable = ['link_id', 'url', 'slug', 'processed'];
+    protected $fillable = ['link_id', 'url', 'slug', 'processed', 'valid'];
 
     protected $table = 'external_links';
 
@@ -17,9 +17,9 @@ class ExternalLinks extends Model
         return $this->belongsTo('Filtr\Models\Links', 'link_id');
     }
 
-    public static function make($link_id, $url)
+    public static function make($link_id, $url, $valid = 1, $processed = 0)
     {   
-        $external_link = new static(compact('link_id', 'url'));
+        $external_link = new static(compact('link_id', 'url', 'valid', 'processed'));
 
         return $external_link;
     }

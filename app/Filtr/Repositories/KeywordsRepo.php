@@ -16,7 +16,9 @@ class KeywordsRepo
      * @return \Filtr\Models\Keywords           keyword model
      */
     public function save(Keywords $keyword)
-    {
+    { 
+        // logger('Keywords');
+        // logger($keyword->slug); 
         $existing = $this->getBySlug($keyword->slug);
 
         if (  $existing ) return $existing;

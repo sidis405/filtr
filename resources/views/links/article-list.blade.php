@@ -4,7 +4,7 @@
             <a href="/{{ $link->slug }}"><img class="img-responsive" src="{{ $link->image }}?w=200"></a>
             <div class="title" style="width:100%"><a href="/{{ $link->slug }}">{{ $link->title }}</a></div>
             <p>
-                {{ $link-> description }}
+                {{ substr($link-> description, 0, 200) }}
             </p>
 
             @if( ! isset($preview) )

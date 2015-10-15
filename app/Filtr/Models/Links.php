@@ -82,6 +82,11 @@ class Links extends Model implements Searchable, HasMedia
         return $this->hasMany('Filtr\Models\ExternalLinks', 'link_id');
     }
 
+    public function validExternals()
+    {
+        return $this->hasMany('Filtr\Models\ExternalLinks', 'link_id')->where('valid', 1)->where('processed', 0);
+    }
+
     public function entities()
     {
         return $this->belongsToMany('Filtr\Models\Entities', 'entity_link', 'link_id', 'entity_id')->withPivot('count', 'relevance')->orderBy('pivot_relevance', 'DESC')->withTimestamps();
