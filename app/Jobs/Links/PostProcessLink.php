@@ -167,7 +167,7 @@ class PostProcessLink extends Job implements SelfHandling, ShouldQueue
 
                     $parsed_url = parse_url($url);
                         
-                    if( $this->checkIfContainsBlackListItem($url, $blacklist) || strlen($parsed_url['path']) < 2 ||
+                    if( $this->checkIfContainsBlackListItem($url, $blacklist) || (isset($parsed_url['path']) && strlen($parsed_url['path']) < 2) ||
                         !filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_SCHEME_REQUIRED) || 
                         !filter_var($url, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED) || 
                         strpos($url, 'ailto:') || 
